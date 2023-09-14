@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
             </button>
             <div className="login-reg">
                 <Link to="/login/">이메일로 로그인</Link>
-                <a href="./html/join.html">회원가입</a>
+                <Link to='/signup/'>회원가입</Link>
             </div>
         </article>
       </div>

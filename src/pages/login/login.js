@@ -1,16 +1,17 @@
-import './login.css'
-import { useNavigate } from 'react-router-dom';
+import './login.scss'
+import { Link, useNavigate } from 'react-router-dom';
 
 
 function Login() {
 
     const navigate = useNavigate();
     const goBackbtn = ()=>{
-        navigate(-1);
+        navigate('/');
     }
 
   return (
     <>
+    <div className='login-wrapper'>
         <article className="top-area">
             <img src="../img/arrow.png" alt="arrow" onClick={goBackbtn}/>
             <p>이메일로 로그인</p>
@@ -25,11 +26,13 @@ function Login() {
             <p className="login-warn">* 이메일 또는 비밀번호가 일치하지 않습니다. 회원이 아니실 경우에는 회원 가입을 먼저 진행해 주세요.</p>
         </section>
         <div className="regist-btn">
-            <a href="./join.html">회원가입</a>
+            <Link to='/signup/'>회원가입</Link>
         </div>
         <div className="login-btn-area">
             <button className="login-btn">로그인</button>
         </div>
+    </div>
+
     <div className="email-verify">
         <h3>이메일 미인증</h3>
         <p>사용자님의 주소로 인증요청을 전송했습니다.</p>
