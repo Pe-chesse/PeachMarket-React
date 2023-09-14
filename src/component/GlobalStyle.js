@@ -7,6 +7,8 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;
         font-family: 'IBM Plex Sans KR', sans-serif;
+        overflow: hidden;
+        box-sizing: border-box;
     };
     button{
         display: flex;
