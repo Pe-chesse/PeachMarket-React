@@ -3,6 +3,9 @@ import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
     ${reset};
+    * {
+        font-family: 'IBM Plex Sans KR', sans-serif;
+    };
     body{
         padding: 0;
         margin: 0;
@@ -26,6 +29,17 @@ const GlobalStyle = createGlobalStyle`
         color: #333;
         font-weight: bold;
     }
+    .top-area {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        margin-bottom: 6px;
+        border-bottom: 1px solid #dbdbdb;
+    }
+    
 `;
+
 
 export default GlobalStyle;
