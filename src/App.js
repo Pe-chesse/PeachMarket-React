@@ -1,14 +1,10 @@
+import { Link } from 'react-router-dom';
 import './App.css';
-import GlobalStyle from './component/GlobalStyle';
-
-const APIKEY = process.env.REACT_APP_FIREBASE_KEY
 
 function App() {
-  console.log(APIKEY)
   return (
     <>
       <div className="wrapper">
-        <GlobalStyle/>
         <article className="logo">
             <img src="./img/Peach_logo.PNG" alt="peach-logo" />
             <h1>Peach Market</h1>
@@ -19,7 +15,7 @@ function App() {
                 <p>구글 계정으로 로그인</p>
             </button>
             <div className="login-reg">
-                <a href="./html/loginpage.html">이메일로 로그인</a>
+                <Link to="/login/">이메일로 로그인</Link>
                 <a href="./html/join.html">회원가입</a>
             </div>
         </article>
