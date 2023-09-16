@@ -101,7 +101,7 @@
         height: 44px;
         border-radius: 30px;
         outline: none;
-        background: #ffbfbf;
+        background: #969595;
         border: none;
         color :#fff;
         font-size: 14px;
@@ -109,6 +109,10 @@
         text-align: center;
         cursor: pointer;
         display: block;
+        margin-top: 20px;
+    }
+    .active {
+        background: #ffbfbf;
     }
 }
 
