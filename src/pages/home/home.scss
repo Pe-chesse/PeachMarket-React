@@ -1,0 +1,59 @@
+.home-wrapper {
+
+.top-area a {   
+    font-size: large;
+    font-weight: bold;
+} 
+
+.top-area img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.6;
+}
+
+.logo img {
+    width: 150px;
+    height: 150px;
+}
+
+.search-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.search-btn button {
+    width: 132px;
+    height: 44px;
+    border-radius: 30px;
+    outline: none;
+    background: #ffbfbf;
+    border: none;
+    color :#fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.post-image-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.post-image-section img {
+    width: 295px;
+    height: 207px;
+    border-radius: 10%;
+    margin: 10px;
+}
+
+}
