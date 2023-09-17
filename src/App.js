@@ -1,7 +1,18 @@
 import { Link } from 'react-router-dom';
 import './App.scss';
+import { initAuthListener } from './controllers/auth';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    initAuthListener((user) => {
+      setUser(user);
+    });
+  }, []); // 이니셜라이징
+
   return (
     <>
       <div className="wrapper">

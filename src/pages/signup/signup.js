@@ -1,8 +1,7 @@
 import './signup.scss'
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../../utils/firebase-config';
-import { createUserWithEmailAndPassword , sendEmailVerification } from "firebase/auth";
 import { useEffect, useRef, useState } from 'react';
+import firebaseAuth from '../../services/firebase/auth';
 
 function Signup() {
     // 뒤로가기
@@ -16,7 +15,7 @@ function Signup() {
         navigate('/login/')
     }
 
-    // 이메일 비밀번호 컨트롤러
+    // 이메일 비밀번호 컨트롤러 
     const emailRef = useRef();
     const passwordRef = useRef();
 
@@ -58,9 +57,7 @@ function Signup() {
     // 회원가입
     const register = async()=>{
         try {
-            await createUserWithEmailAndPassword(auth,registEamil,registPassword);
-            console.log(auth.currentUser)
-            await sendEmailVerification(auth.currentUser)
+            await firebaseAuth.signUpWithEmail(registEamil,registPassword);
 
             document.querySelector('.back-black').classList.add('dibl')
             document.querySelector('.popup').classList.add('dibl')
