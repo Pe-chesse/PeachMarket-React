@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Navbar from "../../component/navbar/navbar";
+import Navbar from "../../components/navbar/navbar";
 import './home.scss'
 
 function Home() {

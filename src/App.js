@@ -1,5 +1,4 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import './App.scss';
 import { initAuthListener } from './controllers/auth';
 import { useEffect, useState } from 'react';
 import React from 'react';
