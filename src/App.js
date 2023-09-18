@@ -20,23 +20,21 @@ function App() {
     });
   }, []); // 이니셜라이징
 
-  useEffect(() => {
-    const isAllowedPage = ['/','/login/','/signup/'].includes(location.pathname);
-    if(user != null){ // 로그인상태
-      if(isAllowedPage){
-        navigate('/home/');
-      }
-    }else{
-      if(!isAllowedPage){
-        navigate('/');
-      }
-    }
-  }, [user,location.pathname, navigate]);
+  // useEffect(() => {
+  //   const isAllowedPage = ['/','/login/','/signup/'].includes(location.pathname);
+  //   if(user != null){ // 로그인상태
+  //     if(isAllowedPage){
+  //       navigate('/home/');
+  //     }
+  //   }else if(!isAllowedPage){
+  //       navigate('/');
+  //   }
+  // }, [user,location.pathname, navigate]);
 
   return (
       <Routes>
         <Route path='/' element={<Index/>}/>
-        <Route path='/login/' element={<Login/>}/>
+        <Route path='/login/' element={<Login propsValue={user}/>}/>
         <Route path = '/signup/' element={<Signup/>}/>
         <Route path='/home/' element={<Home/>}/>
       </Routes>
