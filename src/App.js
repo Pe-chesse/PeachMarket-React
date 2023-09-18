@@ -1,11 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './App.scss';
 import { initAuthListener } from './controllers/auth';
 import { useEffect, useState } from 'react';
+import React from 'react';
+import Index from './pages/index';
+import Login from './pages/login/login';
+import Signup from './pages/signup/signup';
+import Home from './pages/home/home';
+
 
 function App() {
 
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     initAuthListener((user) => {
@@ -13,25 +21,26 @@ function App() {
     });
   }, []); // 이니셜라이징
 
+  useEffect(() => {
+    const isAllowedPage = ['/','/login/','/signup/'].includes(location.pathname);
+    if(user != null){ // 로그인상태
+      if(isAllowedPage){
+        navigate('/home/');
+      }
+    }else{
+      if(!isAllowedPage){
+        navigate('/');
+      }
+    }
+  }, [user,location.pathname, navigate]);
+
   return (
-    <>
-      <div className="wrapper">
-        <article className="logo">
-            <img src="./img/Peach_logo.PNG" alt="peach-logo" />
-            <h1>Peach Market</h1>
-        </article>
-        <article className="go-login">
-            <button id="google-sign-in">
-                <img src="./img/google_logo.png" alt="google_logo" />
-                <p>구글 계정으로 로그인</p>
-            </button>
-            <div className="login-reg">
-                <Link to="/login/">이메일로 로그인</Link>
-                <Link to='/signup/'>회원가입</Link>
-            </div>
-        </article>
-      </div>
-  </>
+      <Routes>
+        <Route path='/' element={<Index/>}/>
+        <Route path='/login/' element={<Login/>}/>
+        <Route path = '/signup/' element={<Signup/>}/>
+        <Route path='/home/' element={<Home/>}/>
+      </Routes>
   );
 }
 

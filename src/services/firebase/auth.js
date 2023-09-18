@@ -1,7 +1,7 @@
 // import { OAuthProvider } from 'firebase/auth';
 
 import {auth} from "../../utils/firebase-config";
-import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 
 class FirebaseAuth {
     constructor() {
@@ -10,7 +10,7 @@ class FirebaseAuth {
  
     signInWithGoogle = async () => {
         try {
-            const provider = new this.auth.GoogleAuthProvider();
+            const provider = new GoogleAuthProvider();
             await signInWithPopup(this.auth, provider);
         } catch (error) {
             console.error('Error signing in with Google:', error);
