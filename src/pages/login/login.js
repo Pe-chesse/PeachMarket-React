@@ -3,7 +3,7 @@ import './login.scss'
 import { Link, useNavigate } from 'react-router-dom';
 import firebaseAuth from '../../services/firebase/auth';
 
-function Login({propsValue}) {
+function Login() {
     const navigate = useNavigate();
     // 뒤로가기
     const goBackbtn = ()=>{
@@ -16,6 +16,45 @@ function Login({propsValue}) {
     
     // 비밀번호 틀렸을 시
     const loginwarnRef = useRef();
+
+    // 로그인 시도
+    const emailVerfiy = document.querySelector('.email-verify')
+
+    const goLogin = async ()=>{
+        await firebaseAuth.signInWithEmail(userEmail,userPwr)
+        .then((res)=>{
+            if(res.user === undefined) {
+                loginwarnRef.current.style.opacity = 1;
+            }else{
+                if(!res.user.emailVerified){
+                    console.log('이메일 인증 안됌')
+                    console.log(res)
+                    emailVerfiy.classList.add('disfl')
+                    setTimeout(() => {
+                        emailVerfiy.classList.add('op1')
+                    }, 100);
+                }else{
+                    navigate('/home/')
+                }
+            }
+        })
+    }
+    
+    // 로그인 미인증시 버튼 기능
+    const emailVerifyConfirm = ()=>{
+        emailVerfiy.classList.remove('op1')
+        setTimeout(() => {
+            emailVerfiy.classList.remove('disfl')
+        }, 100);
+    }
+
+    const resendEmail = () => {
+        firebaseAuth.resendtoEmail()
+        emailVerfiy.classList.remove('op1')
+        setTimeout(() => {
+            emailVerfiy.classList.remove('disfl')
+        }, 100);
+    }
 
   return (
     <>
@@ -50,8 +89,8 @@ function Login({propsValue}) {
         <p>사용자님의 주소로 인증요청을 전송했습니다.</p>
         <p>메일 내부의 링크를 클릭하시면 인증이 완료됩니다.</p>
         <div className="send-btn-area">
-            <button className="resend">인증 메일 재발송</button>
-            <button className="confirm">확인</button>
+            <button className="resend" onClick={resendEmail}>인증 메일 재발송</button>
+            <button className="confirm" onClick={emailVerifyConfirm}>확인</button>
         </div>
     </div>
   </>

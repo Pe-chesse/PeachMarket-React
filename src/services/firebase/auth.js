@@ -29,11 +29,10 @@ class FirebaseAuth {
     signInWithEmail = async (email, password) => {
         try {
             const response = await signInWithEmailAndPassword(this.auth, email, password);
-            console.log(response)
-            return true
+            return response
         } catch (error) {
             console.error('Error signing in with email and password:', error);
-            return false
+            return error
         }
     };
 
@@ -46,6 +45,15 @@ class FirebaseAuth {
         }
     };
 
+
+    resendtoEmail = async () => {
+        try {
+            await sendEmailVerification(this.auth.currentUser);
+        }
+        catch (error) {
+            console.error('Error resending email', error);
+        }
+    }
 
     signOut = async () => {
         try {

@@ -34,7 +34,7 @@ function App() {
   return (
       <Routes>
         <Route path='/' element={<Index/>}/>
-        <Route path='/login/' element={<Login propsValue={user}/>}/>
+        <Route path='/login/' element={<Login/>}/>
         <Route path = '/signup/' element={<Signup/>}/>
         <Route path='/home/' element={<Home/>}/>
       </Routes>
