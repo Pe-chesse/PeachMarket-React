@@ -156,6 +156,8 @@
     font-size: 14px;
     background: #fff;
     cursor: pointer;
+    outline: none;
+    border: none;
 }
 
 .resend {
@@ -164,5 +166,9 @@
 
 .disfl {
     display: flex;
+}
+
+.op1 {
+    opacity: 1;
 }
 

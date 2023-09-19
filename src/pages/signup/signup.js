@@ -46,7 +46,7 @@ function Signup() {
     // 버튼 활성화
     const [activeBtn, setActiveBtn] = useState(true);
     useEffect(()=>{
-        if(emailRef.current.style.opacity == 1 || passwordRef.current.style.opacity == 1 || registEamil.length == 0 || registPassword.length == 0){
+        if(!emailpattern.test(registEamil) || !checkPwr || registEamil.length === 0 || registPassword.length === 0){
             setActiveBtn(true)
         }
         else{

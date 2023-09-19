@@ -20,18 +20,16 @@ function App() {
     });
   }, []); // 이니셜라이징
 
-  useEffect(() => {
-    const isAllowedPage = ['/','/login/','/signup/'].includes(location.pathname);
-    if(user != null){ // 로그인상태
-      if(isAllowedPage){
-        navigate('/home/');
-      }
-    }else{
-      if(!isAllowedPage){
-        navigate('/');
-      }
-    }
-  }, [user,location.pathname, navigate]);
+  // useEffect(() => {
+  //   const isAllowedPage = ['/','/login/','/signup/'].includes(location.pathname);
+  //   if(user != null){ // 로그인상태
+  //     if(isAllowedPage){
+  //       navigate('/home/');
+  //     }
+  //   }else if(!isAllowedPage){
+  //       navigate('/');
+  //   }
+  // }, [user,location.pathname, navigate]);
 
   return (
       <Routes>

@@ -1,5 +1,5 @@
+import firebaseAuth from "../services/firebase/auth";
 import {auth} from "../utils/firebase-config";
-
 
 export const initAuthListener = (onUserChanged) => {
   auth.onAuthStateChanged((user) => {
@@ -12,3 +12,4 @@ export const initAuthListener = (onUserChanged) => {
     }
   });
 };
+
