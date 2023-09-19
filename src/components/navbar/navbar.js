@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './navbar.scss'
 
 function Navbar() {
@@ -6,16 +7,18 @@ function Navbar() {
             <nav className="tab-menu">
                 <ul className="tab-menu-elements">
                     <li className="tab-menu-home on">
-                        <a href="./homepage.html">홈</a>
+                        <button>
+                        <Link to="/home/">홈</Link>
+                        </button>
                     </li>
                     <li className="tab-menu-chat">
-                        <a href="./chat_list.html">채팅</a>
+                        <button >채팅</button>
                     </li>
                     <li className="tab-menu-post">
-                        <a href="./post_write.html">게시물 작성</a>
+                        <button >게시물 작성</button>
                     </li>
                     <li className="tab-menu-profile">
-                        <a href="">프로필</a>
+                        <button >프로필</button>
                     </li>
                 </ul>
             </nav>

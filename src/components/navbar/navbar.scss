@@ -6,6 +6,10 @@
     background-color: #fff;
     z-index: 10;
 }
+button{
+    border: none;
+    background-color: #ffffff;
+}
 
 .tab-menu-elements {
     width: calc(100% - 12px);
@@ -22,7 +26,7 @@
     cursor: pointer;
 }
 
-.tab-menu-elements li a {
+.tab-menu-elements li button {
     position: relative;
     display: inline-block;
     font-size: 10px;
@@ -30,7 +34,7 @@
     padding: 44px 1px 6px 0;
 }
 
-.tab-menu-elements li a::before {
+.tab-menu-elements li button::before {
     content: '';
     position: absolute;
     width: 24px;
@@ -40,30 +44,30 @@
     background-size: contain;
 }
 
-.tab-menu-elements .tab-menu-home a::before {
+.tab-menu-elements .tab-menu-home button::before {
     background-image: url(../../../public/img/home_icon.png);
 }
-.tab-menu-elements .tab-menu-chat a::before {
+.tab-menu-elements .tab-menu-chat button:before {
     background-image: url(../../../public/img/message_icon.png);
 }
-.tab-menu-elements .tab-menu-post a::before {
+.tab-menu-elements .tab-menu-post button::before {
     background-image: url(../../../public/img/edit_icon.png);
 }
-.tab-menu-elements .tab-menu-profile a::before {
+.tab-menu-elements .tab-menu-profile button::before {
     background-image: url(../../../public/img/user_icon.png);
 }
-.tab-menu-home.on a::before {
+.tab-menu-home.on button::before {
     background-image: url(../../../public/img/home_icon_fill.png);
 }
-.tab-menu-chat.on a::before {
+.tab-menu-chat.on button::before {
     background-image: url(../../../public/img/message_icon_fill.png);
 }
-.tab-menu-profile.on a::before {
+.tab-menu-profile.on button::before {
     background-image: url(../../../public/img/user_icon_fill.png);
 }
 
-.tab-menu-home.on a,
-.tab-menu-chat.on a,
-.tab-menu-profile.on a {
+.tab-menu-home.on button,
+.tab-menu-chat.on button,
+.tab-menu-profile.on button {
     color: #ffbfbf;
 }
