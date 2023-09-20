@@ -6,6 +6,7 @@ import Index from './pages/index';
 import Login from './pages/login/login';
 import Signup from './pages/signup/signup';
 import Home from './pages/home/home';
+import Profile from './pages/profile/profile';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path='/login/' element={<Login/>}/>
         <Route path = '/signup/' element={<Signup/>}/>
         <Route path='/home/' element={<Home/>}/>
+        <Route path='/profile/' element={<Profile/>}/>
       </Routes>
   );
 }
