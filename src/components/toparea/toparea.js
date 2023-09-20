@@ -39,10 +39,17 @@ function TopareaOption (){
         }
     }
 
-    if(location.pathname === '/profile'){
+    if(location.pathname === '/profile/'){
         return <img src="../img/top_menu_op.png" alt="top_menu_option" className="menu-bar" onClick={activeModal}/>
     }
-    else{
-        return ''
+    else if(location.pathname === '/search/'){
+        return (       
+        <form method="get">
+        <div className="search">
+            <label className="sr-only"></label>
+            <input type="search" placeholder="계정 검색" id="user-search" className="userSearch"/>
+        </div>
+        </form>
+        )  
     }
 }

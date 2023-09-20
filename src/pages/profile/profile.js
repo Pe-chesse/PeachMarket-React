@@ -3,6 +3,7 @@ import './profile.scss'
 import Toparea from '../../components/toparea/toparea';
 import firebaseAuth from '../../services/firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../../components/navbar/navbar';
 
 function Profile() {
     const navigate = useNavigate();
@@ -128,6 +129,7 @@ function Profile() {
                 </div>
             </article>
         </section>
+        <Navbar/>
 
         <section className={`member-modal`}>
             <img src="../img/modal_rec.png" alt="rec-bar"/>

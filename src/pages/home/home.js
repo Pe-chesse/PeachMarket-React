@@ -10,7 +10,9 @@ function Home() {
             <strong>
                 <Link to="/home/">🍑 PEACH MARKET</Link>
             </strong>
-            <img src='/img/search_icon.png' alt="검색아이콘사진"/>
+            <Link to='/search/'>
+                <img src='/img/search_icon.png' alt="검색아이콘사진"/>
+            </Link>
         </article>
 
         <div className="content">
