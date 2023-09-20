@@ -7,6 +7,7 @@ import Login from './pages/login/login';
 import Signup from './pages/signup/signup';
 import Home from './pages/home/home';
 import Profile from './pages/profile/profile';
+import Searh from './pages/search/searh';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route path = '/signup/' element={<Signup/>}/>
         <Route path='/home/' element={<Home/>}/>
         <Route path='/profile/' element={<Profile/>}/>
+        <Route path='/search/' element={<Searh/>}/>
       </Routes>
   );
 }
