@@ -38,7 +38,6 @@ const GlobalStyle = createGlobalStyle`
         margin-bottom: 6px;
         border-bottom: 1px solid #dbdbdb;
     }
-    
 `;
 
 
