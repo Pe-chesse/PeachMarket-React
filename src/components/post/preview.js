@@ -1,17 +1,7 @@
 import { Link } from 'react-router-dom';
 import { timeAgo } from '../../utils/time-ago';
-// import { useEffect, useRef, useState } from 'react';
 
 const PostPreview = ({ data }) =>  {
-    // const [navbarCount, setNavbarCount] =useState(0);
-    // const location = useLocation();
-    // useEffect(()=>{
-    //     if(location.pathname === '/home/'){
-    //         setNavbarCount(0)
-    //     }else if(location.pathname === '/profile/'){
-    //         setNavbarCount(3)
-    //     }
-    // })
     return (
 
         <article className="post" key={data.id} >
@@ -21,7 +11,7 @@ const PostPreview = ({ data }) =>  {
             </div>
             
             <h2 className="user-nick"><a href="./my_profile.html?nickname=${sortContent[i].user.nickname}">{data.user.nickname}</a></h2>
-            {/* <p className="timepass">{timeAgo(data.updated_at.substr(0,10))}</p> */}
+            <p className="timepass">{timeAgo(data.updated_at.substr(0,10))}</p>
             
         </div>
         <Link to={`/post/${data.id}`}>

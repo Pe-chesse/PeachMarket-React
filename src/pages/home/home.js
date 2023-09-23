@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState} from 'react';
-import Navbar from "../../components/navbar/navbar";
+import Navbar from "../../components/navbar";
 import './home.scss'
 import api from "../../services/api";
 import PostPreview from "../../components/post/preview";
@@ -12,7 +12,6 @@ function Home() {
             try {
                 const response = await api.post.list();
                 setPosts(response);
-                console.log(response);
             } catch (error) {
                 console.log(error);
             }
