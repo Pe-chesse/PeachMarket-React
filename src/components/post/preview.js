@@ -1,16 +1,14 @@
 import { Link } from 'react-router-dom';
 import { timeAgo } from '../../utils/time-ago';
+import UserProfileImage from '../profile-image';
 
 const PostPreview = ({ data }) =>  {
     return (
 
         <article className="post" key={data.id} >
         <div className="post-userinfo">
-            <div className="post-userinfo-img">
-                {data.user.image_url == null || "" ? <img src="../img/peach_cha.png" alt="post-profile-img"/> :<img src={data.user.image_url} alt="user-profile-image"/>}
-            </div>
-            
-            <h2 className="user-nick"><a href="./my_profile.html?nickname=${sortContent[i].user.nickname}">{data.user.nickname}</a></h2>
+            <UserProfileImage image_url={data.user.image_url}/>
+            <h2 className="user-nick"><Link to={`/post/${data.id}`}>{data.user.nickname}</Link></h2>
             <p className="timepass">{timeAgo(data.updated_at.substr(0,10))}</p>
             
         </div>

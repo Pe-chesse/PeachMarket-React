@@ -28,7 +28,7 @@ function ChatList() {
         <div className="content">
             {posts.map((post) => (
                 <PostPreview key={post.id} data={post} />
-            ))}
+            ))} 
         </div>
         <Navbar/>
         </div>
