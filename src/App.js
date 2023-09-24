@@ -8,6 +8,8 @@ import Signup from './pages/signup/signup';
 import Home from './pages/home/home';
 import Profile from './pages/profile/profile';
 import Searh from './pages/search/searh';
+import Chat from './pages/chat/chat';
+import Write from './pages/write/write';
 
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
         <Route path='/home/' element={<Home/>}/>
         <Route path='/profile/' element={<Profile/>}/>
         <Route path='/search/' element={<Searh/>}/>
+        <Route path='/chat/' element={<Chat/>}/>
+        <Route path='/write/' element={<Write/>}></Route>
       </Routes>
   );
 }

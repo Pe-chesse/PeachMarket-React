@@ -62,6 +62,9 @@ button{
 .tab-menu-chat.on button::before {
     background-image: url(../../../public/img/message_icon_fill.png);
 }
+.tab-menu-post.on button::before {
+    background-image: url(../../../public/img/icon-edit_fill.png);
+}
 .tab-menu-profile.on button::before {
     background-image: url(../../../public/img/user_icon_fill.png);
 }

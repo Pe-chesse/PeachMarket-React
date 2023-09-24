@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import './navbar.scss'
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Navbar() {
     const [navbarCount, setNavbarCount] =useState(0);
@@ -8,6 +8,10 @@ function Navbar() {
     useEffect(()=>{
         if(location.pathname === '/home/'){
             setNavbarCount(0)
+        }else if(location.pathname === '/chat/'){
+            setNavbarCount(1)
+        }else if(location.pathname === '/write/'){
+            setNavbarCount(2)
         }else if(location.pathname === '/profile/'){
             setNavbarCount(3)
         }
@@ -22,11 +26,15 @@ function Navbar() {
                         <button>홈</button>
                         </Link>
                     </li>
-                    <li className="tab-menu-chat">
+                    <li className={`tab-menu-chat ${navbarCount === 1 ? 'on' : ''}`}>
+                        <Link to='/chat/'>
                         <button >채팅</button>
+                        </Link>
                     </li>
-                    <li className="tab-menu-post">
+                    <li className={`tab-menu-post ${navbarCount === 2 ? 'on' : ''}`}>
+                        <Link to="/write/">
                         <button >게시물 작성</button>
+                        </Link>
                     </li>
                     <li className={`tab-menu-profile ${navbarCount === 3 ? 'on' : ''}`}>
                     <Link to='/profile/'>

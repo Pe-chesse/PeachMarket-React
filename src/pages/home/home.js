@@ -1,23 +1,16 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/navbar/navbar";
 import './home.scss'
+import Toparea from "../../components/toparea/toparea";
 
 function Home() {
     return (
         <>
         <div className="home-wrapper">
-        <article className="top-area">
-            <strong>
-                <Link to="/home/">🍑 PEACH MARKET</Link>
-            </strong>
-            <Link to='/search/'>
-                <img src='/img/search_icon.png' alt="검색아이콘사진"/>
-            </Link>
-        </article>
-
+            <Toparea/>
         <div className="content">
         </div>
-        <Navbar/>
+            <Navbar/>
         </div>
 
         </>
