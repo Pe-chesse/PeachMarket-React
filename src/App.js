@@ -39,11 +39,9 @@ function App() {
         };
         ws.onMessage = (message) => {
           const socketData = JSON.parse(message);
-          console.log(socketData);
           switch (socketData.type) {
             case "sync.message":
               const newChatInfo = new ChatInfo(socketData);
-              console.log(newChatInfo);
               setChatState(newChatInfo);
               break;
             // case "chat_room.info":

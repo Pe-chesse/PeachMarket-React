@@ -5,7 +5,6 @@ import api from "../../services/api";
 import ChatRoomTile from "../../components/chat/chatroom-tile";
 
 function ChatList({chatState}) {
-    console.log(chatState);
     // const [posts, setPosts] = useState([]);
     // useEffect( () => {
     //     async function fetchData() {
