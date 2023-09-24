@@ -13,7 +13,7 @@ function Navbar() {
             case '/chat/':
                 setNavbarCount(1);
                 break;
-            case '/home/':
+            case '/write/':
                 setNavbarCount(2);
                 break;
             case '/profile/':
@@ -36,8 +36,10 @@ function Navbar() {
                         <button >채팅</button>
                         </Link>
                     </li>
-                    <li className="tab-menu-post">
+                    <li className={`tab-menu-post ${navbarCount === 2 ? 'on' : ''}`}>
+                        <Link to="/write/">
                         <button >게시물 작성</button>
+                        </Link>
                     </li>
                     <li className={`tab-menu-profile ${navbarCount === 3 ? 'on' : ''}`}>
                     <Link to='/profile/'>
