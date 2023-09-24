@@ -10,12 +10,14 @@ import Profile from './pages/profile/profile';
 import Searh from './pages/search/searh';
 import ChatList from './pages/chat/list';
 import WS from './services/ws';
+import { ChatInfo, Chatroom } from './models/chat';
 export let ws;
 
 
 function App() {
 
   const [user, setUser] = useState(null);
+  const [chatState, setChatState] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -38,35 +40,31 @@ function App() {
         ws.onMessage = (message) => {
           const socketData = JSON.parse(message);
           console.log(socketData);
-          // switch (socketData.type) {
-          //   case "sync.message":
-          //     chatInfoState = new ChatInfo(socketData);
-          //     if (currentPath == "chat_list.html") {
-          //       onPageStateChange(chatInfoState);
-          //     }
-          //     break;
-          //   case "chat_room.info":
-          //     chatRoomState = new Chatroom(socketData);
-          //     if (currentPath == "chat_room.html") {
-          //       onRoomPageStateChange(chatRoomState);
-          //       window.scrollTo(0, document.body.scrollHeight);
-          //     }
-          //     break;
-          //   case "chat.message":
-          //     chatRoomState = chatRoomState.copyWith({
-          //       messages: [...chatRoomState.messages, new Message(socketData)],
-          //     });
-          //     if (currentPath == "chat_room.html") {
-          //       console.log(socketData);
-          //       const newMessage = new Message(socketData);
-          //       console.log(newMessage);
-          //       onRoomPageStateadd(newMessage);
-          //       window.scrollTo(0, document.body.scrollHeight);
-          //     }
-          //     break;
-          //   default:
-          //     return;
-          // }
+          switch (socketData.type) {
+            case "sync.message":
+              const newChatInfo = new ChatInfo(socketData);
+              console.log(newChatInfo);
+              setChatState(newChatInfo);
+              break;
+            // case "chat_room.info":
+            //     onRoomPageStateChange(new Chatroom(socketData));
+            //     window.scrollTo(0, document.body.scrollHeight);
+            //   break;
+            // case "chat.message":
+            //   chatRoomState = chatRoomState.copyWith({
+            //     messages: [...chatRoomState.messages, new Message(socketData)],
+            //   });
+            //   if (currentPath == "chat_room.html") {
+            //     console.log(socketData);
+            //     const newMessage = new Message(socketData);
+            //     console.log(newMessage);
+            //     onRoomPageStateadd(newMessage);
+            //     window.scrollTo(0, document.body.scrollHeight);
+            //   }
+            //   break;
+            default:
+              return;
+          }
         };
       }
       setUser(user);
@@ -90,7 +88,7 @@ function App() {
         <Route path='/login/' element={<Login/>}/>
         <Route path='/signup/' element={<Signup/>}/>
         <Route path='/home/' element={<Home/>}/>
-        <Route path='/chat/' element={<ChatList/>}/>
+        <Route path='/chat/'  element={<ChatList chatState={chatState}/>}/>
         <Route path='/profile/' element={<Profile/>}/>
         <Route path='/search/' element={<Searh/>}/>
         {/* <Route path='/post/:id' element={<PostDetail/>}/> */}
