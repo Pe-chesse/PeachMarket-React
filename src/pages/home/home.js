@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState} from 'react';
 import Navbar from "../../components/navbar";
 import './home.scss'
-import Toparea from "../../components/toparea/toparea";
+import Toparea from "../../components/toparea";
 import api from "../../services/api";
 import PostPreview from "../../components/post/preview";
 

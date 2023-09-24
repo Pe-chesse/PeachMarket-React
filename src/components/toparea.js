@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './toparea.scss';
+import '../styles/toparea.scss';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 function Toparea() {

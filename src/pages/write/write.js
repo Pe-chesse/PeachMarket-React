@@ -1,7 +1,7 @@
 import React from 'react';
 import './write.scss';
-import Toparea from '../../components/toparea/toparea';
-import Navbar from '../../components/navbar/navbar';
+import Toparea from '../../components/toparea';
+import Navbar from '../../components/navbar';
 
 function Write() {
     return (

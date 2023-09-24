@@ -13,7 +13,7 @@ function Navbar() {
             case '/chat/':
                 setNavbarCount(1);
                 break;
-            case '/home/':
+            case '/write/':
                 setNavbarCount(2);
                 break;
             case '/profile/':
