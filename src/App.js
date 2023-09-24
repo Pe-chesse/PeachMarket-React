@@ -8,18 +8,64 @@ import Signup from './pages/signup/signup';
 import Home from './pages/home/home';
 import Profile from './pages/profile/profile';
 import Searh from './pages/search/searh';
-import Chat from './pages/chat/chat';
 import Write from './pages/write/write';
+import ChatList from './pages/chat/list';
+import WS from './services/ws';
+import { ChatInfo, Chatroom } from './models/chat';
+export let ws;
 
 
 function App() {
 
   const [user, setUser] = useState(null);
+  const [chatState, setChatState] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     initAuthListener((user) => {
+      if(user != null){
+        ws = new WS(user);
+        ws.onConnect = () => {
+          // if (urlParams.get("room")) {
+          //   ws.send(
+          //     JSON.stringify({
+          //       type: "active_chat",
+          //       request: {
+          //         chat_room: urlParams.get("room"),
+          //       },
+          //     })
+          //   );
+          // }
+        };
+        ws.onMessage = (message) => {
+          const socketData = JSON.parse(message);
+          switch (socketData.type) {
+            case "sync.message":
+              const newChatInfo = new ChatInfo(socketData);
+              setChatState(newChatInfo);
+              break;
+            // case "chat_room.info":
+            //     onRoomPageStateChange(new Chatroom(socketData));
+            //     window.scrollTo(0, document.body.scrollHeight);
+            //   break;
+            // case "chat.message":
+            //   chatRoomState = chatRoomState.copyWith({
+            //     messages: [...chatRoomState.messages, new Message(socketData)],
+            //   });
+            //   if (currentPath == "chat_room.html") {
+            //     console.log(socketData);
+            //     const newMessage = new Message(socketData);
+            //     console.log(newMessage);
+            //     onRoomPageStateadd(newMessage);
+            //     window.scrollTo(0, document.body.scrollHeight);
+            //   }
+            //   break;
+            default:
+              return;
+          }
+        };
+      }
       setUser(user);
     });
   }, []); // 이니셜라이징
@@ -39,12 +85,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Index/>}/>
         <Route path='/login/' element={<Login/>}/>
-        <Route path = '/signup/' element={<Signup/>}/>
+        <Route path='/signup/' element={<Signup/>}/>
         <Route path='/home/' element={<Home/>}/>
+        <Route path='/chat/'  element={<ChatList chatState={chatState}/>}/>
         <Route path='/profile/' element={<Profile/>}/>
         <Route path='/search/' element={<Searh/>}/>
-        <Route path='/chat/' element={<Chat/>}/>
         <Route path='/write/' element={<Write/>}></Route>
+        {/* <Route path='/post/:id' element={<PostDetail/>}/> */}
       </Routes>
   );
 }

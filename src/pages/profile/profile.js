@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import './profile.scss'
-import Toparea from '../../components/toparea/toparea';
+import Toparea from '../../components/toparea';
 import firebaseAuth from '../../services/firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../../components/navbar/navbar';
+import Navbar from '../../components/navbar';
 
 function Profile() {
     const navigate = useNavigate();

@@ -1,19 +1,24 @@
 import { Link, useLocation } from 'react-router-dom';
-import './navbar.scss'
-import { useEffect, useState } from 'react';
+import '../styles/navbar.scss'
+import { useEffect, useRef, useState } from 'react';
 
 function Navbar() {
     const [navbarCount, setNavbarCount] =useState(0);
     const location = useLocation();
     useEffect(()=>{
-        if(location.pathname === '/home/'){
-            setNavbarCount(0)
-        }else if(location.pathname === '/chat/'){
-            setNavbarCount(1)
-        }else if(location.pathname === '/write/'){
-            setNavbarCount(2)
-        }else if(location.pathname === '/profile/'){
-            setNavbarCount(3)
+        switch(location.pathname){
+            case '/home/':
+                setNavbarCount(0);
+                break;
+            case '/chat/':
+                setNavbarCount(1);
+                break;
+            case '/home/':
+                setNavbarCount(2);
+                break;
+            case '/profile/':
+                setNavbarCount(3);
+                break;
         }
     })
     
@@ -27,7 +32,7 @@ function Navbar() {
                         </Link>
                     </li>
                     <li className={`tab-menu-chat ${navbarCount === 1 ? 'on' : ''}`}>
-                        <Link to='/chat/'>
+                        <Link to="/chat/">
                         <button >채팅</button>
                         </Link>
                     </li>

@@ -36,4 +36,5 @@ class API {
     this.comment = new CommentAPI();
   }
 }
-export const api = new API();
+const api = new API();
+export default api;
