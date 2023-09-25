@@ -41,7 +41,7 @@ function Toparea({title}) {
     if(location.pathname === '/profile/'){
         return (
         <article className="top-area">
-            <img src="../img/arrow.png" alt="arrow" onClick={gohome}/>
+            <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
             <img src="../img/top_menu_op.png" alt="top_menu_option" className="menu-bar" onClick={activeModal}/>
         </article>
         )
@@ -49,7 +49,7 @@ function Toparea({title}) {
     else if(location.pathname === '/search/'){
         return (
         <article className="top-area">
-            <img src="../img/arrow.png" alt="arrow" onClick={gohome}/>       
+            <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
             <form method="get">
             <div className="search">
                 <label className="sr-only"></label>
@@ -73,7 +73,7 @@ function Toparea({title}) {
     }else if(location.pathname === '/chat/'){
         return(
             <article className="top-area">
-                <img src="../img/arrow.png" alt="arrow" onClick={gohome}/>       
+                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
                 <h1>채팅</h1>
                 <img src="../img/top_menu_op.png" alt="more_vertical"/>
             </article>
@@ -83,7 +83,7 @@ function Toparea({title}) {
     }else if(location.pathname === '/write/'){
         return(
             <article className="top-area">
-                <img src="../img/arrow.png" alt="arrow" onClick={gohome}/>       
+                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
                 <h1>글 쓰기</h1>
                 <button type="button" className="post_btn">업로드</button>
             </article>
