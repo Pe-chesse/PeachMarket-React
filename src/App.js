@@ -11,21 +11,23 @@ import Searh from './pages/search/searh';
 import ChatList from './pages/chat/list';
 import WS from './services/ws';
 import { ChatInfo, Chatroom } from './models/chat';
-export let ws;
+import ChatRoom from './pages/chat/room';
 
 
 function App() {
 
   const [user, setUser] = useState(null);
   const [chatState, setChatState] = useState(null);
+  const [ws, setWSState] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     initAuthListener((user) => {
       if(user != null){
-        ws = new WS(user);
-        ws.onConnect = () => {
+        const newws = new WS(user);
+        setWSState(newws);
+        newws.onConnect = () => {
           // if (urlParams.get("room")) {
           //   ws.send(
           //     JSON.stringify({
@@ -37,8 +39,9 @@ function App() {
           //   );
           // }
         };
-        ws.onMessage = (message) => {
+        newws.onMessage = (message) => {
           const socketData = JSON.parse(message);
+          console.log(socketData);
           switch (socketData.type) {
             case "sync.message":
               const newChatInfo = new ChatInfo(socketData);
@@ -87,6 +90,7 @@ function App() {
         <Route path='/signup/' element={<Signup/>}/>
         <Route path='/home/' element={<Home/>}/>
         <Route path='/chat/'  element={<ChatList chatState={chatState}/>}/>
+        <Route path='/chat/room/'  element={<ChatRoom ws={ws}/>}/>
         <Route path='/profile/' element={<Profile/>}/>
         <Route path='/search/' element={<Searh/>}/>
         {/* <Route path='/post/:id' element={<PostDetail/>}/> */}

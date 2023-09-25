@@ -1,9 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState} from 'react';
 import Navbar from "../../components/navbar";
 import ChatRoomTile from "../../components/chat/chatroom-tile";
+import Toparea from "../../components/toparea";
 
-function ChatRoom({chatState}) {
+function ChatRoom({ws}) {
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const display = params.get('display');
+  
     // const [posts, setPosts] = useState([]);
     // useEffect( () => {
     //     async function fetchData() {
@@ -17,21 +22,13 @@ function ChatRoom({chatState}) {
     //     fetchData();
     //   }, []);
     return (
-        <div className="home-wrapper">
-        <article className="top-area">
-            <strong>
-                <Link to="/chat/">🍑 Chat</Link>
-            </strong>
-        </article>
+        <div className="chat-wrapper">
+        <Toparea title={display}/>
 
         <div className="content">
-            {chatState != null ? chatState.data.map((roomInfo) => (
-                <ChatRoomTile key={roomInfo.roomname} roomInfo={roomInfo} />
-            )):null} 
         </div>
-        <Navbar/>
         </div>
     );
 }
 
-export default ChatList;
+export default ChatRoom;

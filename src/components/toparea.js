@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import '../styles/toparea.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-function Toparea() {
+function Toparea({title}) {
     const navigate = useNavigate();
-    const gohome = ()=>{
-        navigate('/home/')
+    const navigatePop = ()=>{
+        navigate(-1)
     }
 
     return (
         <>
         <article className="top-area">
-            <img src="../img/arrow.png" alt="arrow" onClick={gohome}/>
+            <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+            {title != null?<p>{title}</p>:null}
             <TopareaOption/>
         </article>
         </>
@@ -38,7 +39,6 @@ function TopareaOption (){
             modalBack.classList.add('disbl')
         }
     }
-
     if(location.pathname === '/profile/'){
         return <img src="../img/top_menu_op.png" alt="top_menu_option" className="menu-bar" onClick={activeModal}/>
     }
@@ -51,5 +51,8 @@ function TopareaOption (){
         </div>
         </form>
         )  
+    }
+    else if(location.pathname === '/chat/room'){
+        return <img src="../img/top_menu_op.png" alt="top_menu_option" className="menu-bar" />;
     }
 }

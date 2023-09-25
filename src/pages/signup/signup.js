@@ -7,7 +7,7 @@ function Signup() {
     // 뒤로가기
     const navigate = useNavigate();
     const goBackbtn = ()=>{
-        navigate('/');
+        navigate(-1);
     }
 
     // 확인시 이동
