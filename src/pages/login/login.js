@@ -7,7 +7,7 @@ function Login() {
     const navigate = useNavigate();
     // 뒤로가기
     const goBackbtn = ()=>{
-        navigate('/');
+        navigate(-1);
     }
 
     // 아이디 비밀번호
