@@ -60,10 +60,14 @@ function Toparea() {
         return(
         <article className="top-area">
             <img src="../img/arrow.png" alt="arrow" onClick={gohome}/>       
-            <h1>채팅</h1>
+            <h1>🍑 Chat</h1>
             <img src="../img/top_menu_op.png" alt="more_vertical"/>
         </article>
         )
+
+    }
+    else if(location.pathname === `/chat/*`){
+        return ''
     }else if(location.pathname === '/write/'){
         return(
         <article className="top-area">
