@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import '../styles/profile-image.scss'
 
 const UserProfileImage = ({ image_url, small}) =>  {
     return (

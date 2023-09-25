@@ -1,5 +1,6 @@
 .home-wrapper {
-    
+    width: 100vw;
+    overflow-x: hidden;
 .top-area a {   
     font-size: large;
     font-weight: bold;
@@ -42,6 +43,8 @@
     cursor: pointer;
 }
 
+// 홈의 게시글 영역
+
 .post-image-section {
     display: flex;
     flex-direction: row;
@@ -56,4 +59,74 @@
     margin: 10px;
 }
 
+.content {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 10px;
+}
+
+.post-userinfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.user-nick {
+    flex-grow: 2;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 15px;
+}
+
+.timepass {
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.post-content {
+    padding: 10px 0;
+}
+
+.post-state {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0;
+}
+
+.post-like {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+}
+
+.like-count {
+    margin-left: 4px;
+}
+
+.post-comment {
+    display: flex;
+    flex-direction: row;
+}
+
+.comment-count {
+    margin-left: 4px;
+}
+
+.post-date {
+    margin: 10px 0px;
+}
+
+.post-blank {
+    width: 100%;
+    height: 65px;
+}
 }

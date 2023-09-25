@@ -10,7 +10,6 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;
         font-family: 'IBM Plex Sans KR', sans-serif;
-        overflow: hidden;
         box-sizing: border-box;
     };
     button{
@@ -37,7 +36,10 @@ const GlobalStyle = createGlobalStyle`
         padding: 15px;
         margin-bottom: 6px;
         border-bottom: 1px solid #dbdbdb;
-    }
+    };
+    .home-wrapper::-webkit-scrollbar {
+        display: none;
+    };
 `;
 
 
