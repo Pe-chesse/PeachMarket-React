@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './profile.scss'
 import Toparea from '../../components/toparea';
 import firebaseAuth from '../../services/firebase/auth';
@@ -8,25 +8,26 @@ import Navbar from '../../components/navbar';
 function Profile() {
     const navigate = useNavigate();
 
-    const modalBack = document.querySelector('.modal-background')
-    const memberModal = document.querySelector('.member-modal');
-    const memLogout = document.querySelector('.member-logout')
+    const modalBackRef = useRef();
+    const memberModalRef = useRef();
+    const memLogoutRef = useRef();
+
 
     const modalExit = () => {
-        if(memberModal.className.includes('modal-toggle')){
-            memberModal.classList.remove('modal-toggle')
-            modalBack.classList.remove('disbl')
+        if(memberModalRef.current.className.includes('modal-toggle')){
+            memberModalRef.current.classList.remove('modal-toggle')
+            modalBackRef.current.classList.remove('disbl')
         }
     }
 
     const modalLogout = () => {
-        memberModal.classList.remove('modal-toggle')
-        memLogout.classList.add('disbl')
+        memberModalRef.current.classList.remove('modal-toggle')
+        memLogoutRef.current.classList.add('disbl')
     }
 
     const modalLogoutCLose = () => {
-        modalBack.classList.remove('disbl');
-        memLogout.classList.remove('disbl')
+        modalBackRef.current.classList.remove('disbl');
+        memLogoutRef.current.classList.remove('disbl')
     }
 
     const logout = () => {
@@ -131,17 +132,17 @@ function Profile() {
         </section>
         <Navbar/>
 
-        <section className={`member-modal`}>
+        <section className='member-modal' ref={memberModalRef}>
             <img src="../img/modal_rec.png" alt="rec-bar"/>
             <ul>
                 <li><p>설정 및 개인정보</p></li>
                 <li className="logout" onClick={modalLogout}><p>로그아웃</p></li>
             </ul>
         </section>
-        <div className="modal-background" onClick={modalExit}></div>
+        <div className="modal-background" ref={modalBackRef} onClick={modalExit}></div>
     </div>
 
-    <section className="member-logout">
+    <section className="member-logout" ref={memLogoutRef}>
         <p>로그아웃 하시겠어요?</p>
         <ul>
             <li onClick={modalLogoutCLose}>취소</li>

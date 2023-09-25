@@ -8,6 +8,7 @@ import Signup from './pages/signup/signup';
 import Home from './pages/home/home';
 import Profile from './pages/profile/profile';
 import Searh from './pages/search/searh';
+import Write from './pages/write/write';
 import ChatList from './pages/chat/list';
 import WS from './services/ws';
 import { ChatInfo, Chatroom } from './models/chat';
@@ -93,6 +94,7 @@ function App() {
         <Route path='/chat/room/'  element={<ChatRoom ws={ws}/>}/>
         <Route path='/profile/' element={<Profile/>}/>
         <Route path='/search/' element={<Searh/>}/>
+        <Route path='/write/' element={<Write/>}></Route>
         {/* <Route path='/post/:id' element={<PostDetail/>}/> */}
       </Routes>
   );

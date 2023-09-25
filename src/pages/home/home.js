@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState} from 'react';
 import Navbar from "../../components/navbar";
 import './home.scss'
+import Toparea from "../../components/toparea";
 import api from "../../services/api";
 import PostPreview from "../../components/post/preview";
 
@@ -20,21 +21,13 @@ function Home() {
       }, []);
     return (
         <div className="home-wrapper">
-        <article className="top-area">
-            <strong>
-                <Link to="/home/">🍑 PEACH MARKET</Link>
-            </strong>
-            <Link to='/search/'>
-                <img src='/img/search_icon.png' alt="검색아이콘사진"/>
-            </Link>
-        </article>
-
+            <Toparea/>
         <div className="content">
             {posts.map((post) => (
                 <PostPreview key={post.id} data={post} />
             ))}
         </div>
-        <Navbar/>
+            <Navbar/>
         </div>
     );
 }
