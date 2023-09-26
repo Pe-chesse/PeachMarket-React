@@ -89,7 +89,7 @@ function App() {
         <Route path='/' element={<Index/>}/>
         <Route path='/login/' element={<Login/>}/>
         <Route path='/signup/' element={<Signup/>}/>
-        <Route path='/home/' element={<Home/>}/>
+        <Route path='/home/' element={<Home user={user}/>} />
         <Route path='/chat/'  element={<ChatList chatState={chatState}/>}/>
         <Route path='/chat/room/'  element={<ChatRoom ws={ws}/>}/>
         <Route path='/profile/' element={<Profile/>}/>

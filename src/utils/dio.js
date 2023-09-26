@@ -54,7 +54,6 @@ export class Dio {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      console.log(response)
       return response.json();
     } catch (e) {
       throw new Error("Network response was not ok");
