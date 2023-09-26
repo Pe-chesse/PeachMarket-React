@@ -53,7 +53,7 @@ function Toparea({title}) {
             <form method="get">
             <div className="search">
                 <label className="sr-only"></label>
-                <input type="search" placeholder="계정 검색" id="user-search" className="userSearch"/>
+                <input type="search" placeholder="계정 검색" id="user-search" className="userSearch" autoComplete='off'/>
             </div>
             </form>
         </article>

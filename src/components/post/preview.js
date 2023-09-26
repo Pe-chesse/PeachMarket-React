@@ -5,16 +5,16 @@ import UserProfileImage from '../profile-image';
 import { useEffect, useRef, useState } from 'react';
 import api from '../../services/api';
 
-const PostPreview = ({ data }) =>  {
+const PostPreview = ({ data,status, setStatus}) =>  {
 
     const likeRef = useRef();
-    const [ LikeLength, setLikeLength ] = useState(data.like_length)
-
     const like = async () => {
         const likeTarget = likeRef.current.closest('.post').id
         try{
             await api.post.like(likeTarget)
-            setLikeLength(data.like_length)
+            .then(()=>{
+                setStatus(false)
+            })
         }
         catch(err){
             console.log(err)
@@ -38,7 +38,7 @@ const PostPreview = ({ data }) =>  {
             <div className="post-state">
                 <div className="post-like" onClick={like} ref={likeRef}>
                     {data.is_like == false ? <img src="../img/heart_off.png" alt="post-heart" className="like-icon"/> : <img src="../img/heart.png" alt="like_icon" className="like-icon"/> }
-                    <p className="like-count">{LikeLength}</p>
+                    <p className="like-count">{data.like_length}</p>
                 </div>
                 <div className="post-comment">
                     <img src="../img/icon_comment.png" alt="post-comment"/>
