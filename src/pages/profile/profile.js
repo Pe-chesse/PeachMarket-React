@@ -1,13 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './profile.scss'
 import Toparea from '../../components/toparea';
 import firebaseAuth from '../../services/firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar';
+import api from '../../services/api';
 
 function Profile() {
     const navigate = useNavigate();
 
+    // 프로필에 있는 모달 옵션
     const modalBackRef = useRef();
     const memberModalRef = useRef();
     const memLogoutRef = useRef();
@@ -34,6 +36,7 @@ function Profile() {
         firebaseAuth.signOut()
         navigate('/')
     }
+
     return (
     <>
         <div className="profile-wrapper">

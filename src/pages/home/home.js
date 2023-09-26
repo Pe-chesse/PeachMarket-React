@@ -9,6 +9,7 @@ import PostPreview from "../../components/post/preview";
 function Home() {
     const [posts, setPosts] = useState([]);
     
+    
     useEffect( () => {
         async function fetchData() {
             try {
@@ -20,7 +21,8 @@ function Home() {
             }
         }
         fetchData();
-      }, []);
+    },[]);
+
     return (
         <div className="home-wrapper">
             <Toparea/>

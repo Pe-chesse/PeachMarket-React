@@ -11,7 +11,8 @@ export class Dio {
 
   async post(url, body = {}, headers = {}) {
     const idToken = await this.getIdToken();
-    return this.dio(url, "POST", body, {
+    return this.dio(url, "POST", JSON.stringify(body) ,{
+      'Content-Type' : 'application/json',
       Authorization: `Bearer ${idToken}`,
       ...headers,
     });
@@ -44,18 +45,20 @@ export class Dio {
 
   async dio(url, method, body, headers) {
     const mergedOptions = {
-      method: method,
-      body: body,
+      method: `${method}`,
       headers: headers,
+      body:body,
     };
     try {
       const response = await fetch(url, mergedOptions);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
+      console.log(response)
       return response.json();
     } catch (e) {
       throw new Error("Network response was not ok");
     }
   }
+  
 }
