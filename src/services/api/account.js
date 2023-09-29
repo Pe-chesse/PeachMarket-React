@@ -50,7 +50,7 @@ export default class AccountAPI {
 
   async search(nickname) {
     try {
-      return await this.dio.post(`${baseURL.account.search}?user=${nickname}`);
+      return await this.dio.get(`${baseURL.account.search}?user=${nickname}`);
     } catch (error) {
       return error;
     }
