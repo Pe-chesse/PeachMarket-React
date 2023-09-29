@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/toparea.scss';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 
-function Toparea({title}) {
+function Toparea({title , searchUser, setSearchUser}) {
     const navigate = useNavigate();
     const navigatePop = ()=>{
         navigate(-1)
@@ -47,15 +47,16 @@ function Toparea({title}) {
         )
     }
     else if(location.pathname === '/search/'){
+
         return (
         <article className="top-area">
             <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
-            <form method="get">
-            <div className="search">
+            <div className="search" >
                 <label className="sr-only"></label>
-                <input type="search" placeholder="계정 검색" id="user-search" className="userSearch" autoComplete='off'/>
+                <input type="search" placeholder="계정 검색" id="user-search" className="userSearch" autoComplete='off' onChange={(e)=>{
+                    setSearchUser(e.target.value)
+                }}/>
             </div>
-            </form>
         </article>
         )  
     }
