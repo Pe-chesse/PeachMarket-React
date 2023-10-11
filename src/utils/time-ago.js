@@ -5,7 +5,7 @@ export function timeAgo(date) {
     const day = hour * 24;
     
     let now = new Date()
-    let timeresult = new Date(date.replaceAll("T"," ").substr(0,19))
+    let timeresult = new Date(date.replaceAll("T"," ").substr(0,18))
     let timecalc = Math.trunc((now.getTime() - timeresult.getTime()) / 1000);
     
     let elapsedText = "";

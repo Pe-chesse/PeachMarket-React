@@ -86,7 +86,7 @@ function Toparea({title , searchUser, setSearchUser}) {
             <article className="top-area">
                 <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
                 <h1>글 쓰기</h1>
-                <button type="button" className="post_btn">업로드</button>
+
             </article>
         )
     }

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './search.scss';
 import Toparea from '../../components/toparea';
@@ -33,8 +33,6 @@ function Searh() {
 
                         let startingSlice = user.nickname.slice(0,insertpoint);
 
-                        let insertText = <span className="keyword">{searchUser}</span>;
-
                         let insertLast = user.nickname.slice(insertpoint, user.nickname.length).replace(`${searchUser}`,'')
                         
                         return(
@@ -44,8 +42,8 @@ function Searh() {
                             <div className="searched-user" key={user.nickname}>
                                 {
                                     user.image_url === null || ''?
-                                    <img src="../img/peach_cha.png" alt="user-profile-image"/>:
-                                    <img src={user.image_url} alt="user-profile-image"/>
+                                    <img src="../img/peach_cha.png" alt="user-profile"/>:
+                                    <img src={user.image_url} alt="user-profile"/>
                                 }
                                 <p className='searched-user-nick'>
                                 {startingSlice}    

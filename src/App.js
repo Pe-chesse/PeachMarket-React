@@ -94,7 +94,7 @@ function App() {
         <Route path='/chat/room/'  element={<ChatRoom ws={ws}/>}/>
         <Route path='/profile/' element={<Profile/>}/>
         <Route path='/search/' element={<Searh/>}/>
-        <Route path='/write/' element={<Write/>}></Route>
+        <Route path='/write/' element={<Write user={user}/>}/>
         {/* <Route path='/post/:id' element={<PostDetail/>}/> */}
       </Routes>
   );
