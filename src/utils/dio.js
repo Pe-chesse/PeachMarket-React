@@ -9,13 +9,21 @@ export class Dio {
     });
   }
 
-  async post(url, body = {}, headers = {}) {
+  async post(url, body, headers = {}) {
     const idToken = await this.getIdToken();
     return this.dio(url, "POST", JSON.stringify(body) ,{
       'Content-Type' : 'application/json',
       Authorization: `Bearer ${idToken}`,
       ...headers,
     });
+  }
+
+  async imagepost(url, body, headers = {}){
+    const idToken = await this.getIdToken();
+    return this.dio(url, "POST", body, {
+      Authorization: `Bearer ${idToken}`,
+      ...headers,
+    })
   }
 
   async put(url, body = {}, headers = {}) {

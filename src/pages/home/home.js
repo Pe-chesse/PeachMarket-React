@@ -23,7 +23,7 @@ function Home({user}) {
     }
             fetchData();
     },[user, status]);
-
+    console.log(user)
 
     return (
         <div className="home-wrapper">
