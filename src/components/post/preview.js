@@ -20,6 +20,7 @@ const PostPreview = ({ data,status, setStatus}) =>  {
             console.log(err)
         }
     }
+    console.log(data.updated_at.substr(0,10))
 
     return (
 
@@ -27,7 +28,7 @@ const PostPreview = ({ data,status, setStatus}) =>  {
         <div className="post-userinfo">
             <UserProfileImage image_url={data.user.image_url}/>
             <h2 className="user-nick"><Link to={`/post/${data.id}`}>{data.user.nickname}</Link></h2>
-            <p className="timepass">{timeAgo(data.updated_at.substr(0,10))}</p>
+            <p className="timepass">{timeAgo(data.updated_at)}</p>
             
         </div>
         <Link to={`/post/${data.id}`}>
