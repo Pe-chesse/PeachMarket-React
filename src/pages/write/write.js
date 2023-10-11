@@ -10,11 +10,6 @@ function Write(user) {
     const textareaRef = useRef();
     const navigate = useNavigate();
     console.log(user)
-    // 텍스트 영역 자동 높이 조절
-    const ResizeTextarea = ()=>{
-        textareaRef.current.style.height = 'auto';
-        textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
-    }
     // 이미지 선택 및 키 생성
     const imageConfirm = async (e)=>{
         const selectedfiles = e.target.files;
