@@ -60,7 +60,7 @@ function Write(user) {
     <button type="button" className="post_btn" onClick={submitPost}>업로드</button>
         <article className="upload container">
             <form method="post" action="" className="upload_form">
-                <img src="../img/peach-user.png" alt="프로필사진" className="profile_img"/>
+                <img src={user.user.image_url === null ? "../img/peach-user.png" : user.user.image_url} alt="프로필사진" className="profile_img"/>
                 <textarea className="upload_post" id="post-sync" placeholder="게시글 입력하기..." ref={textareaRef} row={1}></textarea>
                 <label htmlFor="file-sync" className="upload_img">이미지 업로드 버튼입니다.</label>
                 <input type="file" id="file-sync" accept=".png, .jpg, .jpeg" className="upload_input" multiple onChange={imageConfirm}/>

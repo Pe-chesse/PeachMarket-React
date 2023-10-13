@@ -109,7 +109,7 @@ function App() {
         <Route path='/chat/room/'  element={<ChatRoom ws={ws}/>}/>
         <Route path='/profile/' element={<Profile user={verifyUser}/>}/>
         <Route path='/search/' element={<Searh/>}/>
-        <Route path='/write/' element={<Write user={user}/>}/>
+        <Route path='/write/' element={<Write user={verifyUser}/>}/>
         {/* <Route path='/post/:id' element={<PostDetail/>}/> */}
       </Routes>
   );
