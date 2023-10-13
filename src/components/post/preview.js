@@ -20,7 +20,6 @@ const PostPreview = ({ data,status, setStatus}) =>  {
             console.log(err)
         }
     }
-    console.log(data.updated_at.substr(0,10))
 
     return (
 
@@ -33,6 +32,28 @@ const PostPreview = ({ data,status, setStatus}) =>  {
         </div>
         <Link to={`/post/${data.id}`}>
             <div className="post-content">
+                <div className="post-image-section">
+                {
+                data.image_url != ''  && data.image_url.length == 1 ?
+                <img className="first-image" src={data.image_url[0]} alt="post-image"/>
+                :
+                data.image_url.length == 2 ?
+                data.image_url.map((a,j)=>{
+                    return(
+                        <img className="second-image" src={a} alt="post-image"/>
+                    )
+                }).join(''):
+                data.image_url.length > 2 ?
+                        <>
+                        <img className="third-image" src={data.image_url[0]} alt="post-image"/>
+                        <div className="other-image">
+                        <img className="third-image" src={data.image_url[1]} alt="post-image"/>
+                        <img className="third-image" src={data.image_url[2]} alt="post-image"/>
+                        </div>
+                        </>
+                    : ''
+                }
+                </div>
             <p>{data.body}</p>
             </div>
         </Link>

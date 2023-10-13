@@ -16,7 +16,7 @@ export default class BucketAPI {
       for(let i=0; i < files.length; i++){
         formData.append('files',files[i])
       }
-      const response = await this.dio.imagepost(baseURL.bucket.media, formData);
+      const response = await this.dio.post(baseURL.bucket.media, formData);
       return response;
     } catch (error) {
       return error;

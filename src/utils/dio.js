@@ -11,8 +11,10 @@ export class Dio {
 
   async post(url, body, headers = {}) {
     const idToken = await this.getIdToken();
-    return this.dio(url, "POST", JSON.stringify(body) ,{
-      'Content-Type' : 'application/json',
+    const isFormData = body instanceof FormData;
+    const bodySelect = body instanceof FormData ? body : JSON.stringify(body)
+    return this.dio(url, "POST", bodySelect ,{
+      ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
       Authorization: `Bearer ${idToken}`,
       ...headers,
     });

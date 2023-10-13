@@ -9,7 +9,6 @@ function Write(user) {
     const [imageKeys, setImageKeys] = useState([]);
     const textareaRef = useRef();
     const navigate = useNavigate();
-    console.log(user)
     // 이미지 선택 및 키 생성
     const imageConfirm = async (e)=>{
         const selectedfiles = e.target.files;
@@ -43,7 +42,6 @@ function Write(user) {
     }
 
     useEffect(()=>{
-        console.log(imageKeys)
     },[imageKeys])
 
     // 글 작성 버튼 클릭 시
