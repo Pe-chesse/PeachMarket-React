@@ -13,6 +13,7 @@ import ChatList from './pages/chat/list';
 import WS from './services/ws';
 import { ChatInfo, Chatroom } from './models/chat';
 import ChatRoom from './pages/chat/room';
+import api from './services/api';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   const [ws, setWSState] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const [verifyUser, setVerifyUser] = useState(null);
 
   useEffect(() => {
     initAuthListener((user) => {
@@ -84,6 +86,19 @@ function App() {
   //   }
   // }, [user,location.pathname, navigate]);
 
+  useEffect(()=>{
+    async function verfiy (){
+      await api.account.verify()
+      .then((res)=>{
+        setVerifyUser(res)
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    }
+    verfiy()
+  },[user])
+
   return (
       <Routes>
         <Route path='/' element={<Index/>}/>
@@ -92,7 +107,7 @@ function App() {
         <Route path='/home/' element={<Home user={user}/>} />
         <Route path='/chat/'  element={<ChatList chatState={chatState}/>}/>
         <Route path='/chat/room/'  element={<ChatRoom ws={ws}/>}/>
-        <Route path='/profile/' element={<Profile/>}/>
+        <Route path='/profile/' element={<Profile user={verifyUser}/>}/>
         <Route path='/search/' element={<Searh/>}/>
         <Route path='/write/' element={<Write user={user}/>}/>
         {/* <Route path='/post/:id' element={<PostDetail/>}/> */}

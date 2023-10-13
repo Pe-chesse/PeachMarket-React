@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar';
 import api from '../../services/api';
 
-function Profile() {
+function Profile(user) {
     const navigate = useNavigate();
 
     const modalBackRef = useRef();
     const memberModalRef = useRef();
     const memLogoutRef = useRef();
 
-
+    console.log(user)
     const modalExit = () => {
         if(memberModalRef.current.className.includes('modal-toggle')){
             memberModalRef.current.classList.remove('modal-toggle')
@@ -44,23 +44,23 @@ function Profile() {
             <div className="main-profile-follow">
                 <a href="./followers.html">
                     <div>
-                        <h3 className="followers"></h3>
+                        <h3 className="followers">{user.user.followers_length}</h3>
                         <p>followers</p>
                     </div>
                 </a>
                 <div className="profile-img">
-                    <img src="" alt=""/>
+                    <img src={user.user.image_url} alt="user-profile-image"/>
                 </div>
                 <a href="./followings.html">
                     <div>
-                        <h3 className="followings"></h3>
+                        <h3 className="followings">{user.user.followings_length}</h3>
                         <p>followings</p>
                     </div>
                 </a>
             </div>
             <div>
-                <h2 className="user-nickname"></h2>
-                <p className="user-des"></p>
+                <h2 className="user-nickname">{user.user.nickname}</h2>
+                <p className="user-des">{user.user.description}</p>
             </div>
             <i className="talk-icon"><img src="../img/icon_comment.png" alt="talk-icon"/></i>
             <div className="profile-op">
