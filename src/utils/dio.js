@@ -2,51 +2,48 @@ import {getAuth} from "firebase/auth";
 
 export class Dio {
   async get(url, headers = {}) {
-    const idToken = await this.getIdToken();
     return this.dio(url, "GET", undefined, {
-      Authorization: `Bearer ${idToken}`,
       ...headers,
     });
   }
 
   async post(url, body = {}, headers = {}) {
-    const idToken = await this.getIdToken();
     return this.dio(url, "POST", JSON.stringify(body) ,{
       'Content-Type' : 'application/json',
-      Authorization: `Bearer ${idToken}`,
       ...headers,
     });
   }
 
   async put(url, body = {}, headers = {}) {
-    const idToken = await this.getIdToken();
-    return this.dio(url, "PUT", body, {
-      Authorization: `Bearer ${idToken}`,
+    return this.dio(url, "PUT", JSON.stringify(body), {
       ...headers,
     });
   }
 
   async delete(url, headers = {}) {
-    const idToken = await this.getIdToken();
     return this.dio(url, "DELETE", undefined, {
-      Authorization: `Bearer ${idToken}`,
       ...headers,
     });
   }
 
   async getIdToken() {
-    try {
-      const auth = getAuth();
-      return await auth.currentUser.getIdToken();
-    } catch (e) {
-      return "";
-    }
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user) {
+      return await user.getIdToken();
+    } 
+    return '';
   }
 
   async dio(url, method, body, headers) {
+    const idToken = await this.getIdToken();
+    console.log(idToken);
     const mergedOptions = {
       method: `${method}`,
-      headers: headers,
+      headers: {
+        ...headers,
+        Authorization: `Bearer ${idToken??''}`,
+      },
       body:body,
     };
     try {

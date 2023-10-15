@@ -24,7 +24,7 @@ export default class PostAPI {
 
   async like(postId) {
     try {
-      await this.dio.post(baseURL.post.like, { post: postId });
+      return await this.dio.post(baseURL.post.like, { post: postId });
     } catch (error) {
       return error;
     }
