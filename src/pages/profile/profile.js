@@ -1,19 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './profile.scss'
 import Toparea from '../../components/toparea';
 import firebaseAuth from '../../services/firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar';
 import api from '../../services/api';
 
-function Profile() {
+function Profile(user , verifyUser) {
     const navigate = useNavigate();
 
-    // 프로필에 있는 모달 옵션
     const modalBackRef = useRef();
     const memberModalRef = useRef();
     const memLogoutRef = useRef();
-
 
     const modalExit = () => {
         if(memberModalRef.current.className.includes('modal-toggle')){
@@ -37,7 +35,30 @@ function Profile() {
         navigate('/')
     }
 
+    // 프로필 정보 가져오기
+    const [profileInfo, setProfileInfo] = useState(null)
+    const urlParams = new URLSearchParams(useLocation().search);
+    const nickname = urlParams.get('nickname')
+
+    useEffect(()=>{
+        async function profile (){
+            try{
+                const data = nickname === null ? await api.account.getProfile() : await api.account.getProfile(nickname)
+                setProfileInfo(data.user)
+            }
+            catch(error){
+                console.log(error)
+            }
+        }
+        if(profileInfo === null && user !== null){
+            profile()
+        }
+    },[profileInfo])
+    
+
     return (
+    <>
+    {profileInfo ?
     <>
         <div className="profile-wrapper">
         <Toparea/>
@@ -45,23 +66,23 @@ function Profile() {
             <div className="main-profile-follow">
                 <a href="./followers.html">
                     <div>
-                        <h3 className="followers"></h3>
+                        <h3 className="followers">{profileInfo.followers_length}</h3>
                         <p>followers</p>
                     </div>
                 </a>
                 <div className="profile-img">
-                    <img src="" alt=""/>
+                    <img src={profileInfo.image_url !== null ? profileInfo.image_url : "../img/peach-user.png"} alt="user-profile-image"/>
                 </div>
                 <a href="./followings.html">
                     <div>
-                        <h3 className="followings"></h3>
+                        <h3 className="followings">{profileInfo.followings_length}</h3>
                         <p>followings</p>
                     </div>
                 </a>
             </div>
             <div>
-                <h2 className="user-nickname"></h2>
-                <p className="user-des"></p>
+                <h2 className="user-nickname">{profileInfo.nickname}</h2>
+                <p className="user-des">{profileInfo.description}</p>
             </div>
             <i className="talk-icon"><img src="../img/icon_comment.png" alt="talk-icon"/></i>
             <div className="profile-op">
@@ -155,6 +176,9 @@ function Profile() {
             }}>로그아웃</li>
         </ul>
     </section>
+    </>
+: ''    
+}
     </>
     );
 }

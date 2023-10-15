@@ -8,8 +8,9 @@ export class Dio {
   }
 
   async post(url, body = {}, headers = {}) {
-    return this.dio(url, "POST", JSON.stringify(body) ,{
-      'Content-Type' : 'application/json',
+    const isFormData = body instanceof FormData;
+    return this.dio(url, "POST", isFormData ? body : JSON.stringify(body) ,{
+      ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
       ...headers,
     });
   }
@@ -51,7 +52,6 @@ export class Dio {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      console.log(response)
       return response.json();
     } catch (e) {
       throw new Error("Network response was not ok");

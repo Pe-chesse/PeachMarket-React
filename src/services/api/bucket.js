@@ -9,12 +9,14 @@ export default class BucketAPI {
   async media(files) {
     try {
       const formData = new FormData();
-      files.forEach((file, index) => {
-        formData.append(`file${index}`, file);
-      });
-
+      // Array.from(files).forEach((file, index) => {
+      //   formData.append(`files`, file);
+      //   console.log(formData.getAll(`files`))
+      // });
+      for(let i=0; i < files.length; i++){
+        formData.append('files',files[i])
+      }
       const response = await this.dio.post(baseURL.bucket.media, formData);
-
       return response;
     } catch (error) {
       return error;

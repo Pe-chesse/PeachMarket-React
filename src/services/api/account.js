@@ -15,8 +15,9 @@ export default class AccountAPI {
   }
 
   async getProfile(nickname) {
+    console.log(nickname)
     try {
-      return await this.dio.get(`${baseURL.account.profile}?user=${nickname}`);
+      return nickname === undefined ? await this.dio.get(`${baseURL.account.profile}`) : await this.dio.get(`${baseURL.account.profile}?user=${nickname}`);
     } catch (error) {
       return error;
     }
@@ -50,7 +51,7 @@ export default class AccountAPI {
 
   async search(nickname) {
     try {
-      return await this.dio.post(`${baseURL.account.search}?user=${nickname}`);
+      return await this.dio.get(`${baseURL.account.search}?user=${nickname}`);
     } catch (error) {
       return error;
     }

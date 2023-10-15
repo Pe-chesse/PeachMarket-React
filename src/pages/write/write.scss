@@ -9,6 +9,9 @@
     color :#fff;
     font-size: 14px;
     cursor: pointer;
+    position: absolute;
+    top: 13px;
+    right: 15px;
 }
 
 article.upload {
@@ -32,11 +35,14 @@ article.upload {
 
 .upload_form .upload_post {
     width: 100%;
+    height: 60vh;
     padding: 10px;
     outline: none;
-    resize: none;
     border: none;
+    font-size: 18px;
+    font-weight: bold;
 }
+
 
 .upload_form .upload_img {
     font-size: 0;
@@ -53,14 +59,40 @@ article.upload {
     display: none;
 }
 
-.upload .img-container {
-    width: 40%;
-    height: 180px;
-    margin: 16px auto;
-    display: flex;
+.img-container {
+    width: 80%;
+    position: absolute;
+    bottom: 90px;
+    left: 0px;
+    white-space: nowrap;
     overflow-x: scroll;
-    flex-wrap: nowrap;
-    gap: 16px;
+}
+
+.img-container::-webkit-scrollbar{
+    display: none;
+}
+
+.img-box {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    margin-left: 10px;
+    position: relative;
+}
+
+.img-wrap {
+    width: 100%;
+    height: 80px;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-set {
+    width: 100%;
+    white-space: nowrap;
 }
 
 .post-img-plus {
@@ -70,7 +102,29 @@ article.upload {
     position: relative;
 }
 
-.btn-set {
-    display: flex;
+.delete {
     position: absolute;
+    top: 0px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: #ffbfbf;
+    border-radius: 50%;
+    opacity: 1;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.delete-btn i {
+    width: 16px;
+    border: 2px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: #fff;
+}
+
+.delete-btn i:last-child {
+    transform: translate(-50%, -50%) rotate(-45deg);
 }

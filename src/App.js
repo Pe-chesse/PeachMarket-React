@@ -13,6 +13,7 @@ import ChatList from './pages/chat/list';
 import WS from './services/ws';
 import { ChatInfo, Chatroom } from './models/chat';
 import ChatRoom from './pages/chat/room';
+import api from './services/api';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   const [ws, setWSState] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const [verifyUser, setVerifyUser] = useState(null);
 
   useEffect(() => {
     initAuthListener((user) => {
@@ -70,6 +72,18 @@ function App() {
         };
       }
       setUser(user);
+      if(user) {
+        async function verfiy (){
+          try {
+            const userData = await api.account.verify()
+            setVerifyUser(userData)
+          }
+          catch(err){
+            console.log(err)
+          }
+        }
+        verfiy()
+      }
     });
   }, []); // 이니셜라이징
 
@@ -82,19 +96,19 @@ function App() {
   //   }else if(!isAllowedPage){
   //       navigate('/');
   //   }
-  // }, [user,location.pathname, navigate]);
+  // }, [user,location.pathname, navigate]);  
 
   return (
       <Routes>
         <Route path='/' element={<Index/>}/>
         <Route path='/login/' element={<Login/>}/>
         <Route path='/signup/' element={<Signup/>}/>
-        <Route path='/home/' element={<Home/>}/>
-        <Route path='/chat/'  element={<ChatList chatState={chatState}/>}/>
+        <Route path='/home/' element={<Home user={user} verifyUser={verifyUser}/>} />
+        <Route path='/chat/'  element={<ChatList chatState={chatState} verifyUser={verifyUser}/>}/>
         <Route path='/chat/room/'  element={<ChatRoom ws={ws}/>}/>
-        <Route path='/profile/' element={<Profile/>}/>
+        <Route path='/profile' element={<Profile user={user} verifyUser={verifyUser}/>}/>
         <Route path='/search/' element={<Searh/>}/>
-        <Route path='/write/' element={<Write/>}></Route>
+        <Route path='/write/' element={<Write user={verifyUser}/>}/>
         {/* <Route path='/post/:id' element={<PostDetail/>}/> */}
       </Routes>
   );
