@@ -1,9 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/navbar.scss'
 import { useEffect, useRef, useState } from 'react';
+import api from '../services/api';
 
-function Navbar() {
+function Navbar(user) {
     const [navbarCount, setNavbarCount] =useState(0);
+    const [verfiyUser, setVerifyUser] = useState(null);
+
     const location = useLocation();
     useEffect(()=>{
         switch(location.pathname){
@@ -16,11 +19,24 @@ function Navbar() {
             case '/write/':
                 setNavbarCount(2);
                 break;
-            case '/profile/':
+            case '/profile':
                 setNavbarCount(3);
                 break;
         }
     })
+
+    useEffect(()=>{
+        async function verfiy (){
+            try{
+                const data = await api.account.verify()
+                setVerifyUser(data)
+            }
+            catch(error){
+                console.log(error)
+            }
+        }
+        verfiy()
+      },[user])
     
     return (
         <article>
@@ -42,7 +58,7 @@ function Navbar() {
                         </Link>
                     </li>
                     <li className={`tab-menu-profile ${navbarCount === 3 ? 'on' : ''}`}>
-                    <Link to='/profile/'>
+                    <Link to={`/profile`}>
                         <button >프로필</button>
                     </Link>
                     </li>

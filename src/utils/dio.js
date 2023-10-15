@@ -20,14 +20,6 @@ export class Dio {
     });
   }
 
-  async imagepost(url, body, headers = {}){
-    const idToken = await this.getIdToken();
-    return this.dio(url, "POST", body, {
-      Authorization: `Bearer ${idToken}`,
-      ...headers,
-    })
-  }
-
   async put(url, body = {}, headers = {}) {
     const idToken = await this.getIdToken();
     return this.dio(url, "PUT", body, {

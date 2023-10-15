@@ -72,6 +72,18 @@ function App() {
         };
       }
       setUser(user);
+      if(user) {
+        async function verfiy (){
+          try {
+            const userData = await api.account.verify()
+            setVerifyUser(userData)
+          }
+          catch(err){
+            console.log(err)
+          }
+        }
+        verfiy()
+      }
     });
   }, []); // 이니셜라이징
 
@@ -84,30 +96,17 @@ function App() {
   //   }else if(!isAllowedPage){
   //       navigate('/');
   //   }
-  // }, [user,location.pathname, navigate]);
-
-  useEffect(()=>{
-    async function verfiy (){
-      await api.account.verify()
-      .then((res)=>{
-        setVerifyUser(res)
-      })
-      .catch((err)=>{
-        console.log(err)
-      })
-    }
-    verfiy()
-  },[user])
+  // }, [user,location.pathname, navigate]);  
 
   return (
       <Routes>
         <Route path='/' element={<Index/>}/>
         <Route path='/login/' element={<Login/>}/>
         <Route path='/signup/' element={<Signup/>}/>
-        <Route path='/home/' element={<Home user={user}/>} />
-        <Route path='/chat/'  element={<ChatList chatState={chatState}/>}/>
+        <Route path='/home/' element={<Home user={user} verifyUser={verifyUser}/>} />
+        <Route path='/chat/'  element={<ChatList chatState={chatState} verifyUser={verifyUser}/>}/>
         <Route path='/chat/room/'  element={<ChatRoom ws={ws}/>}/>
-        <Route path='/profile/' element={<Profile user={verifyUser}/>}/>
+        <Route path='/profile' element={<Profile user={user} verifyUser={verifyUser}/>}/>
         <Route path='/search/' element={<Searh/>}/>
         <Route path='/write/' element={<Write user={verifyUser}/>}/>
         {/* <Route path='/post/:id' element={<PostDetail/>}/> */}

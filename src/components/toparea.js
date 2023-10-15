@@ -38,7 +38,7 @@ function Toparea({title , searchUser, setSearchUser}) {
             modalBack.classList.add('disbl')
         }
     }
-    if(location.pathname === '/profile/'){
+    if(location.pathname.includes('/profile')){
         return (
         <article className="top-area">
             <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
@@ -87,7 +87,6 @@ function Toparea({title , searchUser, setSearchUser}) {
             <article className="top-area">
                 <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
                 <h1>글 쓰기</h1>
-
             </article>
         )
     }

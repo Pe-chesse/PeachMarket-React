@@ -12,7 +12,6 @@ function Searh() {
         try{
             api.account.search(searchUser)
             .then((res)=>{
-                console.log(searchUser)
                 setSearchedUser(res)
             })
         }
@@ -20,7 +19,6 @@ function Searh() {
             console.log(error)
         }
     },[searchUser])
-    console.log(searchedUser)
     return (
         <>
         <div className="search-wrapper">
@@ -38,7 +36,7 @@ function Searh() {
                         return(
                             searchUser.length === 0 || searchedUser.length === 0 ? '' 
                             :
-                            <Link to='/profile/'>        
+                            <Link to={`/profile?nickname=${user.nickname}`}>        
                             <div className="searched-user" key={user.nickname}>
                                 {
                                     user.image_url === null || ''?

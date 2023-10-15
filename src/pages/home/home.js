@@ -33,7 +33,7 @@ function Home({user}) {
             ))}
         </div>
         <div className='post-blank'></div>
-            <Navbar/>
+            <Navbar user={user}/>
         </div>
     );
 }
