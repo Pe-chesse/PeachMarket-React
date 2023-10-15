@@ -37,8 +37,7 @@ export class Dio {
   }
 
   async dio(url, method, body, headers) {
-    const idToken = await this.getIdToken();
-    console.log(idToken);
+    const idToken = await this.getIdToken(); 
     const mergedOptions = {
       method: `${method}`,
       headers: {

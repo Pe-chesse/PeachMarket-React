@@ -43,7 +43,7 @@ function Profile(user , verifyUser) {
     useEffect(()=>{
         async function profile (){
             try{
-                const data = nickname === null ? await api.account.getProfile() : await api.account.getProfile(nickname)
+                const data =  await api.account.getProfile(nickname)
                 setProfileInfo(data.user)
             }
             catch(error){

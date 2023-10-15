@@ -37,6 +37,16 @@ function Navbar(user) {
         }
         verfiy()
       },[user])
+
+    function getUserNickname(){
+        
+        try{
+            return verfiyUser.nickname;
+        }catch(e){
+            return '';
+        }
+
+    }
     
     return (
         <article>
@@ -58,7 +68,7 @@ function Navbar(user) {
                         </Link>
                     </li>
                     <li className={`tab-menu-profile ${navbarCount === 3 ? 'on' : ''}`}>
-                    <Link to={`/profile`}>
+                    <Link to={`/profile?nickname=${getUserNickname()}`}>
                         <button >프로필</button>
                     </Link>
                     </li>
