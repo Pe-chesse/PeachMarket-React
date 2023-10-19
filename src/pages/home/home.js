@@ -25,7 +25,7 @@ function Home({user}) {
     },[user, status]);
 
     return (
-        <div className="home-wrapper">
+        <div className="content-wrap">
             <Toparea/>
         <div className="content">
             {posts.map((post) => (

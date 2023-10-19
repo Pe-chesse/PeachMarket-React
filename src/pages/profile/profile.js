@@ -5,6 +5,8 @@ import firebaseAuth from '../../services/firebase/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar';
 import api from '../../services/api';
+import PostPreview from '../../components/post/preview';
+import '../home/home.scss'
 
 function Profile(user , verifyUser) {
     const navigate = useNavigate();
@@ -39,12 +41,11 @@ function Profile(user , verifyUser) {
     const [profileInfo, setProfileInfo] = useState(null)
     const urlParams = new URLSearchParams(useLocation().search);
     const nickname = urlParams.get('nickname')
-
     useEffect(()=>{
         async function profile (){
             try{
                 const data =  await api.account.getProfile(nickname)
-                setProfileInfo(data.user)
+                setProfileInfo(data)
             }
             catch(error){
                 console.log(error)
@@ -54,6 +55,10 @@ function Profile(user , verifyUser) {
             profile()
         }
     },[profileInfo])
+    console.log(profileInfo)
+
+    // 유저의 게시글
+    const [status,setStauts] = useState(false);
 
     return (
     <>
@@ -65,23 +70,23 @@ function Profile(user , verifyUser) {
             <div className="main-profile-follow">
                 <a href="./followers.html">
                     <div>
-                        <h3 className="followers">{profileInfo.followers_length}</h3>
+                        <h3 className="followers">{profileInfo.user.followers_length}</h3>
                         <p>followers</p>
                     </div>
                 </a>
                 <div className="profile-img">
-                    <img src={profileInfo.image_url !== null ? profileInfo.image_url : "../img/peach-user.png"} alt="user-profile-image"/>
+                    <img src={profileInfo.user.image_url !== null ? profileInfo.user.image_url : "../img/peach-user.png"} alt="user-profile-image"/>
                 </div>
                 <a href="./followings.html">
                     <div>
-                        <h3 className="followings">{profileInfo.followings_length}</h3>
+                        <h3 className="followings">{profileInfo.user.followings_length}</h3>
                         <p>followings</p>
                     </div>
                 </a>
             </div>
             <div>
-                <h2 className="user-nickname">{profileInfo.nickname}</h2>
-                <p className="user-des">{profileInfo.description}</p>
+                <h2 className="user-nickname">{profileInfo.user.nickname}</h2>
+                <p className="user-des">{profileInfo.user.description}</p>
             </div>
             <i className="talk-icon"><img src="../img/icon_comment.png" alt="talk-icon"/></i>
             <div className="profile-op">
@@ -120,39 +125,18 @@ function Profile(user , verifyUser) {
         <div className="post-view">
             <button className="list-icon"><img src="../img/icon_list_on.png" alt="img"/></button>
         </div>
-
-        <section className="post-section">
-            <article className="post">
-                <div className="post-userinfo">
-                    <div className="post-userinfo-img">
-                        
-                    </div>
-
-                    <h2 className="user-nick"></h2>
-                    <i className="post-side-icon"><img src="../img/post_side_icon.png" alt="post-side-icon"/></i>
-                </div>
-
-                <div className="post-content">
-                    
-                    <p></p>
-                </div>
-
-                <div className="post-state">
-                    <div className="post-like">
-                        <img src="../img/heart_off.png" alt="post-heart"/>
-                        <p className="like-count">30</p>
-                    </div>
-                    <div className="post-comment">
-                        <img src="../img/icon_comment.png" alt="post-comment"/>
-                        <p className="comment-count">18</p>
-                    </div>
-                </div>
-                <div className="post-date">
-                    
-                    <p></p>
-                </div>
-            </article>
-        </section>
+        <div className='content-wrap'>
+            <div className='content'>
+            {
+                profileInfo.post.length === 0 ?
+                <div className='empty-post'>게시물이 없습니다.</div>:
+                profileInfo.post.map((a)=>{
+                    return <PostPreview key={a.id} data={a} setStatus={setStauts}/>
+                })
+            }
+            </div>
+        <div className='post-blank'></div>
+        </div>
         <Navbar/>
 
         <section className='member-modal' ref={memberModalRef}>
