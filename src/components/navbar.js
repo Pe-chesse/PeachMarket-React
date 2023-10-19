@@ -19,7 +19,7 @@ function Navbar(user) {
             case '/write/':
                 setNavbarCount(2);
                 break;
-            case '/profile':
+            case '/profile/user':
                 setNavbarCount(3);
                 break;
         }
@@ -68,7 +68,7 @@ function Navbar(user) {
                         </Link>
                     </li>
                     <li className={`tab-menu-profile ${navbarCount === 3 ? 'on' : ''}`}>
-                    <Link to={`/profile?nickname=${getUserNickname()}`}>
+                    <Link to={`/profile/user?nickname=${getUserNickname()}`}>
                         <button >프로필</button>
                     </Link>
                     </li>

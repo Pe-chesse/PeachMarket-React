@@ -25,18 +25,17 @@ function Searh() {
             <Toparea searchUser={searchUser} setSearchUser={setSearchUser}/>
             <section className="container search-result">
                 {
-                    searchedUser.map((user)=>{
+                    searchedUser.map((user,i)=>{
                         // 유저가 검색한 색상 변경
                         let insertpoint = user.nickname.indexOf(searchUser);
 
                         let startingSlice = user.nickname.slice(0,insertpoint);
 
                         let insertLast = user.nickname.slice(insertpoint, user.nickname.length).replace(`${searchUser}`,'')
-                        
                         return(
                             searchUser.length === 0 || searchedUser.length === 0 ? '' 
                             :
-                            <Link to={`/profile?nickname=${user.nickname}`}>        
+                            <Link to={`/profile/user?nickname=${user.nickname}`} key={i}>        
                             <div className="searched-user" key={user.nickname}>
                                 {
                                     user.image_url === null || ''?

@@ -2,9 +2,11 @@ import { useRef, useState } from 'react';
 import './login.scss'
 import { Link, useNavigate } from 'react-router-dom';
 import firebaseAuth from '../../services/firebase/auth';
+import api from '../../services/api';
 
 function Login() {
     const navigate = useNavigate();
+    const [user, setUser] = useState(null)
     // 뒤로가기
     const goBackbtn = ()=>{
         navigate(-1);
@@ -21,24 +23,35 @@ function Login() {
     const emailVerfiy = document.querySelector('.email-verify')
 
     const goLogin = async ()=>{
-        await firebaseAuth.signInWithEmail(userEmail,userPwr)
-        .then((res)=>{
+        try{
+            const res = await firebaseAuth.signInWithEmail(userEmail,userPwr)
             if(res.user === undefined) {
                 loginwarnRef.current.style.opacity = 1;
             }else{
                 if(!res.user.emailVerified){
-                    console.log('이메일 인증 안됌')
-                    console.log(res)
                     emailVerfiy.classList.add('disfl')
                     setTimeout(() => {
                         emailVerfiy.classList.add('op1')
                     }, 100);
                 }else{
-                    navigate('/home/')
+                    const data = await api.account.verify()
+                    setUser(data)
                 }
             }
-        })
-    }
+            }
+        catch(error){
+                console.log(error)
+            }
+        }
+        if(user !== null){
+            if(user.nickname === null){
+                navigate('/setting/')
+            }
+            else{
+                navigate('/home/')
+            }
+        }
+
     
     // 로그인 미인증시 버튼 기능
     const emailVerifyConfirm = ()=>{

@@ -24,6 +24,7 @@ export default class AccountAPI {
 
   async editProfile(userInfo) {
     try {
+      console.log(userInfo)
       return await this.dio.put(baseURL.account.profile, userInfo);
     } catch (error) {
       return error;

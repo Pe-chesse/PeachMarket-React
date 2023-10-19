@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './profile.scss'
 import Toparea from '../../components/toparea';
 import firebaseAuth from '../../services/firebase/auth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar';
 import api from '../../services/api';
 
@@ -54,7 +54,6 @@ function Profile(user , verifyUser) {
             profile()
         }
     },[profileInfo])
-    
 
     return (
     <>
@@ -86,7 +85,7 @@ function Profile(user , verifyUser) {
             </div>
             <i className="talk-icon"><img src="../img/icon_comment.png" alt="talk-icon"/></i>
             <div className="profile-op">
-                <a href="./my_profile_set.html">프로필 수정</a>
+                <Link to="/profile/setting/">프로필 수정</Link>
                 <a href="./product_write.html">상품 등록</a>
             </div>
         </section>
