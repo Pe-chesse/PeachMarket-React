@@ -55,7 +55,6 @@ function Profile(user , verifyUser) {
             profile()
         }
     },[profileInfo])
-    console.log(profileInfo)
 
     // 유저의 게시글
     const [status,setStauts] = useState(false);
