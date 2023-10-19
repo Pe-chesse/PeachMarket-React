@@ -38,12 +38,20 @@ function Toparea({title , searchUser, setSearchUser}) {
             modalBack.classList.add('disbl')
         }
     }
-    if(location.pathname.includes('/profile')){
+    if(location.pathname.includes('/profile/user')){
         return (
         <article className="top-area">
             <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
             <h1>프로필</h1>
             <img src="../img/top_menu_op.png" alt="top_menu_option" className="menu-bar" onClick={activeModal}/>
+        </article>
+        )
+    }
+    else if(location.pathname === ('/profile/setting/')){
+        return(
+        <article className="top-area">
+            <img src="../../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+            <h1>프로필 수정</h1>
         </article>
         )
     }

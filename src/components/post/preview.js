@@ -26,7 +26,7 @@ const PostPreview = ({ data,status, setStatus}) => {
         <article className="post" key={data.id} id={data.id} >
         <div className="post-userinfo">
             <UserProfileImage image_url={data.user.image_url}/>
-            <h2 className="user-nick"><Link to={`/profile?nickname=${data.user.nickname}`}>{data.user.nickname}</Link></h2>
+            <h2 className="user-nick"><Link to={`/profile/user?nickname=${data.user.nickname}`}>{data.user.nickname}</Link></h2>
             <p className="timepass">{timeAgo(data.updated_at)}</p>
             
         </div>

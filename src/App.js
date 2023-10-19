@@ -14,6 +14,7 @@ import WS from './services/ws';
 import { ChatInfo, Chatroom } from './models/chat';
 import ChatRoom from './pages/chat/room';
 import api from './services/api';
+import Setprofile from './pages/profile/setprofile';
 
 
 function App() {
@@ -103,10 +104,12 @@ function App() {
         <Route path='/' element={<Index/>}/>
         <Route path='/login/' element={<Login/>}/>
         <Route path='/signup/' element={<Signup/>}/>
+        <Route path='/setting/' element={<Setprofile/>}/>
         <Route path='/home/' element={<Home user={user} verifyUser={verifyUser}/>} />
         <Route path='/chat/'  element={<ChatList chatState={chatState} verifyUser={verifyUser}/>}/>
         <Route path='/chat/room/'  element={<ChatRoom ws={ws}/>}/>
-        <Route path='/profile' element={<Profile user={user} verifyUser={verifyUser}/>}/>
+        <Route path='/profile/user' element={<Profile user={user} verifyUser={verifyUser}/>}/>
+        <Route path='/profile/setting/' element={<Setprofile/>}/>
         <Route path='/search/' element={<Searh/>}/>
         <Route path='/write/' element={<Write user={verifyUser}/>}/>
         {/* <Route path='/post/:id' element={<PostDetail/>}/> */}

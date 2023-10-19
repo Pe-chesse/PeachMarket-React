@@ -16,7 +16,9 @@ export class Dio {
   }
 
   async put(url, body = {}, headers = {}) {
-    return this.dio(url, "PUT", JSON.stringify(body), {
+    const isFormData = body instanceof FormData;
+    return this.dio(url, "PUT", isFormData ? body : JSON.stringify(body), {
+      ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
       ...headers,
     });
   }
