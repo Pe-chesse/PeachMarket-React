@@ -6,8 +6,10 @@ import api from '../services/api';
 function Navbar(user) {
     const [navbarCount, setNavbarCount] =useState(0);
     const [verfiyUser, setVerifyUser] = useState(null);
-
     const location = useLocation();
+    const urlParams = new URLSearchParams(useLocation().search);
+    const nickname = urlParams.get('nickname');
+    
     useEffect(()=>{
         switch(location.pathname){
             case '/home/':
@@ -19,11 +21,15 @@ function Navbar(user) {
             case '/write/':
                 setNavbarCount(2);
                 break;
-            case '/profile/user':
+            case `/profile/user`:
+                if(verfiyUser !== null && nickname === verfiyUser.nickname)
                 setNavbarCount(3);
+                else{
+                    setNavbarCount(4)
+                }
                 break;
         }
-    })
+    },[verfiyUser])
 
     useEffect(()=>{
         async function verfiy (){

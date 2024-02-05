@@ -15,6 +15,10 @@ import { ChatInfo, Chatroom } from './models/chat';
 import ChatRoom from './pages/chat/room';
 import api from './services/api';
 import Setprofile from './pages/profile/setprofile';
+import PostDetail from './components/post/postdetail';
+import followings from './pages/profile/followings';
+import Followings from './pages/profile/followings';
+import Followers from './pages/profile/followers';
 
 
 function App() {
@@ -28,48 +32,48 @@ function App() {
 
   useEffect(() => {
     initAuthListener((user) => {
-      if(user != null){
+      if(user !== null){
         const newws = new WS(user);
         setWSState(newws);
-        newws.onConnect = () => {
-          // if (urlParams.get("room")) {
-          //   ws.send(
-          //     JSON.stringify({
-          //       type: "active_chat",
-          //       request: {
-          //         chat_room: urlParams.get("room"),
-          //       },
-          //     })
-          //   );
-          // }
-        };
+        // newws.onConnect = () => {
+        //   if (urlParams.get("room")) {
+        //     ws.send(
+        //       JSON.stringify({
+        //         type: "active_chat",
+        //         request: {
+        //           chat_room: urlParams.get("room"),
+        //         },
+        //       })
+        //     );
+        //   }
+        // };
         newws.onMessage = (message) => {
           const socketData = JSON.parse(message);
           console.log(socketData);
-          switch (socketData.type) {
-            case "sync.message":
-              const newChatInfo = new ChatInfo(socketData);
-              setChatState(newChatInfo);
-              break;
-            // case "chat_room.info":
-            //     onRoomPageStateChange(new Chatroom(socketData));
-            //     window.scrollTo(0, document.body.scrollHeight);
-            //   break;
-            // case "chat.message":
-            //   chatRoomState = chatRoomState.copyWith({
-            //     messages: [...chatRoomState.messages, new Message(socketData)],
-            //   });
-            //   if (currentPath == "chat_room.html") {
-            //     console.log(socketData);
-            //     const newMessage = new Message(socketData);
-            //     console.log(newMessage);
-            //     onRoomPageStateadd(newMessage);
-            //     window.scrollTo(0, document.body.scrollHeight);
-            //   }
-            //   break;
-            default:
-              return;
-          }
+          // switch (socketData.type) {
+          //   case "sync.message":
+          //     const newChatInfo = new ChatInfo(socketData);
+          //     setChatState(newChatInfo);
+          //     break;
+          //   case "chat_room.info":
+          //       onRoomPageStateChange(new Chatroom(socketData));
+          //       window.scrollTo(0, document.body.scrollHeight);
+          //     break;
+          //   case "chat.message":
+          //     chatRoomState = chatRoomState.copyWith({
+          //       messages: [...chatRoomState.messages, new Message(socketData)],
+          //     });
+          //     if (currentPath == "chat_room.html") {
+          //       console.log(socketData);
+          //       const newMessage = new Message(socketData);
+          //       console.log(newMessage);
+          //       onRoomPageStateadd(newMessage);
+          //       window.scrollTo(0, document.body.scrollHeight);
+          //     }
+          //     break;
+          //   default:
+          //     return;
+          // }
         };
       }
       setUser(user);
@@ -110,9 +114,11 @@ function App() {
         <Route path='/chat/room/'  element={<ChatRoom ws={ws}/>}/>
         <Route path='/profile/user' element={<Profile user={user} verifyUser={verifyUser}/>}/>
         <Route path='/profile/setting/' element={<Setprofile/>}/>
+        <Route path='/profile/followings' element={<Followings user={user} verfiyUser={verifyUser}/>}/>
+        <Route path='/profile/followers' element={<Followers user={user} verfiyUser={verifyUser}/>}/>
         <Route path='/search/' element={<Searh/>}/>
         <Route path='/write/' element={<Write user={verifyUser}/>}/>
-        {/* <Route path='/post/:id' element={<PostDetail/>}/> */}
+        <Route path='/post' element={<PostDetail user={user} verifyUser={verifyUser}/>}/>
       </Routes>
   );
 }

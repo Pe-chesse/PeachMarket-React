@@ -38,26 +38,40 @@ function Profile(user , verifyUser) {
     }
 
     // 프로필 정보 가져오기
-    const [profileInfo, setProfileInfo] = useState(null)
+    const [profileInfo, setProfileInfo] = useState(null);
     const urlParams = new URLSearchParams(useLocation().search);
-    const nickname = urlParams.get('nickname')
+    const nickname = urlParams.get('nickname');
+    const [isfollowing, setIsFollowing] = useState(false);
+    const [rendering, setRendering] = useState(false)
+
     useEffect(()=>{
         async function profile (){
             try{
                 const data =  await api.account.getProfile(nickname)
                 setProfileInfo(data)
+                const followings = await api.account.getFollowing(user.verifyUser.nickname)
+                for(let i=0; i < followings.length; i++){
+                    if(followings[i].nickname === nickname){
+                        setIsFollowing(true)
+                    }
+                }
             }
             catch(error){
                 console.log(error)
             }
         }
-        if(profileInfo === null && user !== null){
-            profile()
-        }
-    },[profileInfo])
+        profile()
+    },[user, rendering])
 
     // 유저의 게시글
     const [status,setStauts] = useState(false);
+
+    // 팔로잉 기능
+    const followFucn = async() => {
+        await api.account.setFollow(nickname)
+        setRendering(!rendering)
+        setIsFollowing(!isfollowing)
+    }
 
     return (
     <>
@@ -67,31 +81,44 @@ function Profile(user , verifyUser) {
         <Toparea/>
         <section className="main-profile-area">
             <div className="main-profile-follow">
-                <a href="./followers.html">
+                <Link to={`/profile/followers?nickname=${nickname}`}>
                     <div>
                         <h3 className="followers">{profileInfo.user.followers_length}</h3>
                         <p>followers</p>
                     </div>
-                </a>
+                </Link>
                 <div className="profile-img">
-                    <img src={profileInfo.user.image_url !== null ? profileInfo.user.image_url : "../img/peach-user.png"} alt="user-profile-image"/>
+                    <img src={profileInfo.user.image_url !== null ? profileInfo.user.image_url : "../img/peach-user.png"} alt="user-profile"/>
                 </div>
-                <a href="./followings.html">
+                <Link to={`/profile/followings?nickname=${nickname}`}>
                     <div>
                         <h3 className="followings">{profileInfo.user.followings_length}</h3>
                         <p>followings</p>
                     </div>
-                </a>
+                </Link>
             </div>
             <div>
                 <h2 className="user-nickname">{profileInfo.user.nickname}</h2>
                 <p className="user-des">{profileInfo.user.description}</p>
             </div>
-            <i className="talk-icon"><img src="../img/icon_comment.png" alt="talk-icon"/></i>
-            <div className="profile-op">
-                <Link to="/profile/setting/">프로필 수정</Link>
-                <a href="./product_write.html">상품 등록</a>
-            </div>
+            {
+                user.verifyUser.nickname === nickname ? ''
+                :
+                <i className="talk-icon"><img src="../img/icon_comment.png" alt="talk-icon"/></i>
+            }
+            {
+                user.verifyUser !== null ? 
+                nickname !== user.verifyUser.nickname ?
+                <div className="follow-btn">
+                    <button onClick={followFucn} className={isfollowing ? 'followed' : 'follow'}>{isfollowing ? '언팔로우' : '팔로우'}</button>
+                </div>
+                :            
+                <div className="profile-op">
+                    <Link to="/profile/setting/">프로필 수정</Link>
+                    <a href="./product_write.html">상품 등록</a>
+                </div>
+                :''
+            }
         </section>
 
         <section className="product-list">

@@ -94,13 +94,14 @@
 
 .post-content {
     padding: 10px 0;
+    line-height: 22px;
 }
 
 .post-image-section {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     
     .second-image {
         width: 200px ;
@@ -168,7 +169,7 @@
     height: 65px;
 }
 
-@media(max-width: 400px){
+@media(max-width: 450px){
 
     .second-image {
         width: 200px;

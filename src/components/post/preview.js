@@ -30,7 +30,7 @@ const PostPreview = ({ data,status, setStatus}) => {
             <p className="timepass">{timeAgo(data.updated_at)}</p>
             
         </div>
-        <Link to={`/post/${data.id}`}>
+        <Link to={`/post/?postid=${data.id}`}>
             <div className="post-content">
                 <div className="post-image-section">
                 {
@@ -66,9 +66,6 @@ const PostPreview = ({ data,status, setStatus}) => {
                     <img src="../img/icon_comment.png" alt="post-comment"/>
                     <p className="comment-count">{data.comment_length}</p>
                 </div>
-            </div>
-            <div className="post-date">
-                <p>{data.updated_at.substr(0,10)}</p>
             </div>
     </article>
     );

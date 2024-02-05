@@ -7,8 +7,8 @@ export function timeAgo(date) {
     let now = new Date()
     let timeresult = new Date(date.replaceAll("T"," ").substr(0,18))
     let timecalc = Math.trunc((now.getTime() - timeresult.getTime()) / 1000);
-    
     let elapsedText = "";
+    let checkLastText = "";
     if (timecalc < seconds) {
         elapsedText = "방금 전";
     } else if (timecalc < minute) {
@@ -23,6 +23,7 @@ export function timeAgo(date) {
         const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
         elapsedText =  timeresult.toLocaleDateString('ko-KR', options).replace(/\//g, '.');
     }
+    checkLastText = elapsedText.replace(/\.$/, '');
     
-    return elapsedText;
+    return checkLastText;
 }

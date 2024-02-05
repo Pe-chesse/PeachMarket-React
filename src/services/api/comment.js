@@ -17,7 +17,7 @@ export default class CommentAPI {
   }
   async reply(commentId, body) {
     try {
-      return await this.dio.post(`${baseURL.post.comment}${commentId}`, {
+      return await this.dio.post(`${baseURL.post.comment}${commentId}/`, {
         body: body,
       });
     } catch (error) {
