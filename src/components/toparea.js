@@ -46,6 +46,20 @@ function Toparea({title , searchUser, setSearchUser}) {
             <img src="../img/top_menu_op.png" alt="top_menu_option" className="menu-bar" onClick={activeModal}/>
         </article>
         )
+    }else if(location.pathname.includes('/profile/followers')){
+        return(
+        <article className="top-area">
+            <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+            <h1>팔로워</h1>
+        </article>
+        )
+    }else if(location.pathname.includes('/profile/followings')){
+        return(
+        <article className="top-area">
+            <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+            <h1>팔로잉</h1>
+        </article>
+        )
     }
     else if(location.pathname === ('/profile/setting/')){
         return(
@@ -95,6 +109,13 @@ function Toparea({title , searchUser, setSearchUser}) {
             <article className="top-area">
                 <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
                 <h1>글 쓰기</h1>
+            </article>
+        )
+    }else if(location.pathname.includes('/post')){
+        return(
+            <article className="top-area">
+                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
+                <h1>🍑 PeachMarket</h1>
             </article>
         )
     }

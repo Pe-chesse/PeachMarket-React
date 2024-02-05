@@ -31,19 +31,29 @@ export default class AccountAPI {
     }
   }
 
-  async getFollow(nickname, follow) {
+  async getFollow(nickname) {
     try {
       return await this.dio.get(
-        `${baseURL.account.follow}${nickname}?f=${follow}`
+        `${baseURL.account.follow}${nickname}/`
       );
     } catch (error) {
       return error;
     }
   }
 
+  async getFollowing(nickname, follow){
+    try{
+      return await this.dio.get(
+        `${baseURL.account.follow}${nickname}?f=${follow}/`
+      );
+    }catch (error){
+      return error;
+    }
+  }
+
   async setFollow(nickname) {
     try {
-      return await this.dio.post(`${baseURL.account.follow}${nickname}`);
+      return await this.dio.post(`${baseURL.account.follow}${nickname}/`);
     } catch (error) {
       return error;
     }

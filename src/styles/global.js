@@ -6,11 +6,13 @@ const GlobalStyle = createGlobalStyle`
     * {
         font-family: 'IBM Plex Sans KR', sans-serif;
     };
+    
     body{
         padding: 0;
         margin: 0;
         font-family: 'IBM Plex Sans KR', sans-serif;
         box-sizing: border-box;
+
     };
     button{
         display: flex;
