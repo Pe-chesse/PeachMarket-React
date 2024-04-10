@@ -7,7 +7,7 @@ import GlobalStyle from './styles/global';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Router>
+  <Router basename={process.env.PUBLIC_URL}>
     <GlobalStyle/>
     <App/>
   </Router>
