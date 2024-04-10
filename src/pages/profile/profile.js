@@ -7,6 +7,8 @@ import Navbar from '../../components/navbar';
 import api from '../../services/api';
 import PostPreview from '../../components/post/preview';
 import '../home/home.scss'
+import ChatAPI from '../../services/api/chat';
+import ChatList from '../chat/list';
 
 function Profile(user , verifyUser) {
     const navigate = useNavigate();
@@ -51,7 +53,7 @@ function Profile(user , verifyUser) {
                 setProfileInfo(data)
                 const followings = await api.account.getFollowing(user.verifyUser.nickname)
                 for(let i=0; i < followings.length; i++){
-                    if(followings[i].nickname === nickname){
+                    if(followings[i].nickname !== null && followings[i].nickname === nickname){
                         setIsFollowing(true)
                     }
                 }
@@ -73,9 +75,20 @@ function Profile(user , verifyUser) {
         setIsFollowing(!isfollowing)
     }
 
+    // // 채팅방 생성
+    const createChatroom = ()=>{
+        try{
+            api.chat.create(nickname)
+            navigate('/chat/')
+        } catch(error){
+            console.log(error)
+        }
+    }
+
+
     return (
     <>
-    {profileInfo ?
+    {profileInfo !== null ?
     <>
         <div className="profile-wrapper">
         <Toparea/>
@@ -101,10 +114,12 @@ function Profile(user , verifyUser) {
                 <h2 className="user-nickname">{profileInfo.user.nickname}</h2>
                 <p className="user-des">{profileInfo.user.description}</p>
             </div>
-            {
+            {   
+                user.verifyUser !== null ?
                 user.verifyUser.nickname === nickname ? ''
                 :
-                <i className="talk-icon"><img src="../img/icon_comment.png" alt="talk-icon"/></i>
+                <i className="talk-icon" onClick={()=>{createChatroom()}}><img src="../img/icon_comment.png" alt="talk-icon"/></i>
+                :''
             }
             {
                 user.verifyUser !== null ? 

@@ -20,4 +20,17 @@ export default class ChatAPI {
       return error;
     }
   }
+
+  async load(chatroom, num){
+    try{
+      return await this.dio.post(
+        baseURL.chat.load,
+        {chatroom:chatroom,
+        num:num,},
+        {"Content-Type": "application/json",}
+      )
+    }catch(error){
+      console.log(error)
+    }
+  }
 }

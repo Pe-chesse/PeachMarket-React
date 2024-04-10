@@ -7,6 +7,8 @@ function Toparea({title , searchUser, setSearchUser}) {
     const navigatePop = ()=>{
         navigate(-1)
     }
+    const urlparams = new URLSearchParams(useLocation().search)
+    const nickname = urlparams.get('display')
 
 //     return (
 //         <>
@@ -40,51 +42,67 @@ function Toparea({title , searchUser, setSearchUser}) {
     }
     if(location.pathname.includes('/profile/user')){
         return (
-        <article className="top-area">
-            <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
-            <h1>프로필</h1>
-            <img src="../img/top_menu_op.png" alt="top_menu_option" className="menu-bar" onClick={activeModal}/>
-        </article>
+        <>
+            <article className="top-area">
+                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+                <h1>프로필</h1>
+                <img src="../img/top_menu_op.png" alt="top_menu_option" className="menu-bar" onClick={activeModal}/>
+            </article>
+            <div className='blank'></div>
+        </>
         )
     }else if(location.pathname.includes('/profile/followers')){
         return(
-        <article className="top-area">
-            <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
-            <h1>팔로워</h1>
-        </article>
+        <>
+            <article className="top-area">
+                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+                <h1>팔로워</h1>
+            </article>
+            <div className='blank'></div>
+        </>
         )
     }else if(location.pathname.includes('/profile/followings')){
         return(
-        <article className="top-area">
-            <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
-            <h1>팔로잉</h1>
-        </article>
+        <>
+            <article className="top-area">
+                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+                <h1>팔로잉</h1>
+            </article>
+            <div className='blank'></div>
+        </>
         )
     }
     else if(location.pathname === ('/profile/setting/')){
         return(
-        <article className="top-area">
-            <img src="../../img/arrow.png" alt="arrow" onClick={navigatePop}/>
-            <h1>프로필 수정</h1>
-        </article>
+        <>
+            <article className="top-area">
+                <img src="../../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+                <h1>프로필 수정</h1>
+            </article>
+            <div className='blank'></div>
+        </>
         )
     }
     else if(location.pathname === '/search/'){
 
         return (
-        <article className="top-area">
-            <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
-            <div className="search" >
-                <label className="sr-only"></label>
-                <input type="search" placeholder="계정 검색" id="user-search" className="userSearch" autoComplete='off' onChange={(e)=>{
-                    setSearchUser(e.target.value)
-                }}/>
-            </div>
-        </article>
+        <>
+            <article className="top-area">
+                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
+                <div className="search" >
+                    <label className="sr-only"></label>
+                    <input type="search" placeholder="계정 검색" id="user-search" className="userSearch" autoComplete='off' onChange={(e)=>{
+                        setSearchUser(e.target.value)
+                    }}/>
+                </div>
+            </article>
+            <div className='blank'></div>
+        </>
         )  
     }
     else if(location.pathname === '/home/'){
     return (
+        <>
             <article className="top-area">
                 <strong>
                     <Link to="/home/">🍑 PEACH MARKET</Link>
@@ -93,30 +111,50 @@ function Toparea({title , searchUser, setSearchUser}) {
                     <img src='/img/search_icon.png' alt="검색아이콘사진"/>
                 </Link>
             </article>
+            <div className='blank'></div>
+        </>
         )
     }else if(location.pathname === '/chat/'){
         return(
-            <article className="top-area">
-                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
-                <h1>채팅</h1>
-                <img src="../img/top_menu_op.png" alt="more_vertical"/>
-            </article>
+            <>
+                <article className="top-area">
+                    <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
+                    <h1>채팅</h1>
+                    <img src="../img/top_menu_op.png" alt="more_vertical"/>
+                </article>
+                <div className='blank'></div>
+            </>
         )
     }else if(location.pathname === '/chat/room'){
-        return <img src="../img/top_menu_op.png" alt="top_menu_option" className="menu-bar" />;
+        return(
+            <>
+            <article className='top-area'>
+                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+                <h1>{nickname}</h1>       
+                <img src="../img/top_menu_op.png" alt="top_menu_option" className="menu-bar" />
+            </article>
+            <div className='blank'></div>
+            </>
+        ) 
     }else if(location.pathname === '/write/'){
         return(
-            <article className="top-area">
-                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
-                <h1>글 쓰기</h1>
-            </article>
+            <>
+                <article className="top-area">
+                    <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
+                    <h1>글 쓰기</h1>
+                </article>
+                <div className='blank'></div>
+            </>
         )
     }else if(location.pathname.includes('/post')){
         return(
-            <article className="top-area">
-                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
-                <h1>🍑 PeachMarket</h1>
-            </article>
+            <>
+                <article className="top-area">
+                    <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
+                    <h1>🍑 PeachMarket</h1>
+                </article>
+                <div className='blank'></div>
+            </>
         )
     }
 }

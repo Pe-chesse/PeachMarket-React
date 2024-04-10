@@ -30,7 +30,12 @@ export default class WS {
 
   send(message) {
     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
-      this.socket.send(message);
+      try{
+        this.socket.send(message);
+        console.log(message)
+      }catch(error){
+        console.log(error)
+      }
     }
   }
 
@@ -42,5 +47,7 @@ export default class WS {
     console.log("WebSocket disconnected");
   }
 
-  onMessage(message) {}
+  onMessage(message) {
+    console.log("Websocket message sucsses")
+  }
 }

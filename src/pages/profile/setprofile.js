@@ -38,7 +38,7 @@ function Setprofile() {
     }
 
     async function submitProfile (){
-        if(inputValueRef.current.value && nicknameRef.current.value && descriptionRef.current.value !== ''){
+        if( nicknameRef.current.value && descriptionRef.current.value !== ''){
             let userInfo = {
                 nickname : nicknameRef.current.value,
                 description : descriptionRef.current.value,
@@ -48,6 +48,7 @@ function Setprofile() {
             }
             try{
                 await api.account.editProfile(userInfo)
+                console.log('시작')
                 if(location.pathname === '/setting/'){
                     navigate('/home/')
                 }
@@ -85,11 +86,11 @@ function Setprofile() {
                 </div>
 
                 <div className="input-text">
-                    <input type="text" placeholder="닉네임" id="nickname" ref={nicknameRef}/>
+                    <input type="text" placeholder="닉네임" id="nickname" ref={nicknameRef} autoComplete='off'/>
                     <p className="nick-warn">* 이미 사용중인 닉네임입니다.</p>
-                    <input type="textarea" placeholder="소개" id="introduce" ref={descriptionRef}/>
+                    <input type="textarea" placeholder="소개" id="introduce" ref={descriptionRef} autoComplete='off'/>
                 </div>
-                <button className="submit-btn" onClick={submitProfile}>{location.pathname === '/setting/'? '시작하기' : '수정하기'}</button>
+                <button className="submit-btn" onClick={()=>{submitProfile()}}>{location.pathname === '/setting/'? '시작하기' : '수정하기'}</button>
             </article>
         </>
     );

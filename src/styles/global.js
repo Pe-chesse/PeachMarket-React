@@ -38,10 +38,21 @@ const GlobalStyle = createGlobalStyle`
         padding: 15px;
         margin-bottom: 6px;
         border-bottom: 1px solid #dbdbdb;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        box-sizing: border-box;
+        background: #fff;
     };
     .home-wrapper::-webkit-scrollbar {
         display: none;
     };
+    .blank {
+        widht: 100%;
+        box-sizing: border-box;
+        height: 58px;
+    }
 `;
 
 

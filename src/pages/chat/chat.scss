@@ -7,24 +7,24 @@
 
   /* chat-list */
   .chat-list {
-    width: 94%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 20px;
   }
   
   .chat-list-index {
     display: flex;
     flex-direction: row;
     padding: 12px;
+    border-bottom: 1px solid #dbdbdb;
+
   }
   
   .chat-list-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin-left: 6px;
+    justify-content: flex-start;
+    margin-left: 10px;
   }
   
   .chat-list-content h2 {
@@ -48,18 +48,34 @@
   
   /* chat-room */
   .chat-room {
-    width: 96%;
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    padding-bottom: 100px;
+    padding: 0 10px 0 10px;
+    padding-bottom: 56px;
+  }
+
+  .chat-content {
+    display: flex;
+    padding: 5px;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin: 10px 0 10px 0;
+  }
+
+  .flex-start{
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .flex-end {
+    justify-content: flex-end;
   }
   
   .chat-room-they {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    padding: 10px;
+    align-items: center;
   }
   
   .chat-room-they h3 {
@@ -75,7 +91,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    padding: 10px;
+    align-items: center;
   }
   
   .chat-room-my h3 {
@@ -88,9 +104,12 @@
   }
   
   .chat-message-time {
-    font-size: small;
-    margin-left: 8px;
-    margin-top: auto;
+    align-self: flex-end;
+    p {
+      font-size: 10px;
+      color: #ccc;
+      font-weight: bold;
+    }
   }
   
   .bottom-area {
@@ -111,10 +130,31 @@
   }
   
   .user-icon {
+    border-radius: 50%;
     outline: none;
     border: none;
     background: none;
     cursor: pointer;
+    overflow: hidden;
+    align-self: flex-start;
+    img {
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+    }
+  }
+  
+  .message-content {
+    border-radius: 8px;
+    padding: 8px;
+    background: #ffbfbf;
+    margin: 0 5px 0 5px;
+    p {
+      max-width: 200px;
+      font-size: 16px;
+      color: #333;
+      font-weight: bold;
+    }
   }
   
   .sr-only {
@@ -127,15 +167,35 @@
     border: 0;
     padding: 0;
   }
+
+  .content-box{
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+    padding: 5px;
+  }
+
+  .message-area {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 8px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+  }
   
   .message-send {
     padding: 10px 16px;
-    width: 80%;
-    min-width: 316px;
     border: none;
     background: #f2f2f2;
     border-radius: 32px;
     cursor: pointer;
+    flex-grow: 3;
   }
   
   .message-send::placeholder {
@@ -151,6 +211,6 @@
     cursor: pointer;
     font-size: 16px;
     color: #c4c4c4;
-    padding: 24px;
   }
+
   

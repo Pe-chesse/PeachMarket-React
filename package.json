@@ -21,8 +21,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
+  "homepage": "https://github.com/Pe-chesse/PeachMarket-React/",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -40,5 +42,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1",
+    "install": "^0.13.0",
+    "npm": "^10.5.1"
   }
 }

@@ -2,18 +2,19 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/navbar";
 import ChatRoomTile from "../../components/chat/chatroom-tile";
 import Toparea from "../../components/toparea";
+import './chat.scss'
 
-function ChatList({chatState}) {
+function ChatList({chatRoomState, verifyUser}) {
     return (
-        <div className="home-wrapper">
+        <>
         <Toparea/>
-        <div className="content">
-            {chatState != null ? chatState.data.map((roomInfo) => (
-                <ChatRoomTile key={roomInfo.roomname} roomInfo={roomInfo} />
+        <div className="chat-list">
+            {chatRoomState != null ? chatRoomState.data.map((roomInfo) => (
+                <ChatRoomTile className="chat-list-index" key={roomInfo.roomname} roomInfo={roomInfo} verifyUser={verifyUser} />
             )):null} 
         </div>
         <Navbar/>
-        </div>
+        </>
     );
 }
 

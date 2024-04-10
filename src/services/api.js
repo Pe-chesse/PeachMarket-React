@@ -19,6 +19,7 @@ export const baseURL = {
   },
   chat: {
     create: baseurl + "chat/create/",
+    load: baseurl + "chat/load/"
   },
   post: {
     home: baseurl + "post/",
