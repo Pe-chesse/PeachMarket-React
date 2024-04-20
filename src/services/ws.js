@@ -2,7 +2,7 @@ import { address } from "./api.js";
 
 export default class WS {
   constructor(user) {
-    this.url = `ws://${address}:8001/ws/v1/chat/${user.uid}/`;
+    this.url = `ws://${address}:8001/ws/v1/chat/${user}/`;
     this.socket??this.connect();
   }
 
@@ -32,7 +32,7 @@ export default class WS {
     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
       try{
         this.socket.send(message);
-        console.log(message)
+        // console.log(message)
       }catch(error){
         console.log(error)
       }

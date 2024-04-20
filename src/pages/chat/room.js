@@ -1,20 +1,51 @@
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState} from 'react';
+import { useEffect, useMemo, useRef, useState} from 'react';
 import Toparea from "../../components/toparea";
 
-function ChatRoom({ws, chatState, chatMessage, setChatController, verifyUser}) {
+function ChatRoom({ws, chatMessage, verifyUser}) {
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const [message, setMessage] = useState('')
     const [chatMessages , setChatmessages] = useState([])
-    const [messageController, setMessageController] = useState(false)
+    const [otherUser, setOtherUser] = useState(null)
+    const [mine, setMine] = useState(null)
+    const scrollRef = useRef(null)
+
+    const findOther = (()=>{
+        if(chatMessage !== null && verifyUser !== null){
+            const findOther = chatMessage.members.filter((e) => e.nickname !== verifyUser.nickname)
+            return findOther
+        }
+    })
+
+    const findMine = (()=>{
+        if(chatMessage !== null && verifyUser !== null){
+            const findMine = chatMessage.members.filter(e => e.nickname === verifyUser.nickname)
+            return findMine
+        }
+    })
+
+    useMemo(()=>{
+        if(chatMessage !== null){
+        const otherUser = findOther()
+        setOtherUser(otherUser)
+        const Mine = findMine()
+        setMine(Mine)
+    }
+    },[chatMessage])
 
     useEffect(()=>{
         if(chatMessage){
             setChatmessages(chatMessage.messages)
         }
-        setMessageController(false)
-    },[chatMessage, messageController])
+    },[chatMessage])
+
+    // 채팅방 스크롤
+    useEffect(()=>{
+        if(scrollRef.current){
+            scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' })
+        }
+    },[chatMessages])
 
     // const [posts, setPosts] = useState([]);
     // useEffect( () => {
@@ -42,15 +73,13 @@ function ChatRoom({ws, chatState, chatMessage, setChatController, verifyUser}) {
             })
         )
         setMessage('')
-        setMessageController(true)
-        setChatController(true)
     }
 
     return (
-        <div className="chat-wrapper">
+        <div className="chat-wrapper" ref={scrollRef}>
             <Toparea/>
 
-            <div className="chat-room">
+            <div className="chat-room" >
                 {
                     chatMessages ?
                     chatMessages.map((a,i)=>{
@@ -61,7 +90,7 @@ function ChatRoom({ws, chatState, chatMessage, setChatController, verifyUser}) {
                                         a.user.nickname !== verifyUser.nickname ?
                                         <>
                                         <div className="user-icon">
-                                            <img src={chatMessage.members[0].image_url !== null ? chatMessage.members[0].image_url : '../img/peach_cha.png'}/>
+                                            <img src={otherUser[0].image_url !== null ? otherUser[0].image_url : '../img/peach_cha.png'}/>
                                         </div>
                                         <div className="message-content">
                                             <p>{a.content}</p>
@@ -78,7 +107,7 @@ function ChatRoom({ws, chatState, chatMessage, setChatController, verifyUser}) {
                                             <p>{a.content}</p>
                                         </div>
                                         <div className="user-icon">
-                                            <img src={chatMessage.members[1].image_url !== null ? chatMessage.members[1].image_url : '../img/peach_cha.png'}/>
+                                            <img src={mine[0].image_url !== null ? mine[0].image_url : '../img/peach_cha.png'}/>
                                         </div>
                                         </>
                                     }

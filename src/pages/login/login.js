@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './login.scss'
 import { Link, useNavigate } from 'react-router-dom';
 import firebaseAuth from '../../services/firebase/auth';
@@ -22,7 +22,8 @@ function Login() {
     // 로그인 시도
     const emailVerfiy = document.querySelector('.email-verify')
 
-    const goLogin = async ()=>{
+    const goLogin = async (e)=>{
+        e.preventDefault();
         try{
             const res = await firebaseAuth.signInWithEmail(userEmail,userPwr)
             if(res.user === undefined) {
@@ -43,15 +44,16 @@ function Login() {
                 console.log(error)
             }
         }
-        if(user !== null){
-            if(user.nickname === null){
-                navigate('/setting/')
+        
+        useEffect(() => {
+            if (user !== null) {
+                if (user.nickname === null) {
+                    navigate('/setting/')
+                } else {
+                    navigate('/home/')
+                }
             }
-            else{
-                navigate('/home/')
-            }
-        }
-
+        }, [user, navigate]);
     
     // 로그인 미인증시 버튼 기능
     const emailVerifyConfirm = ()=>{
@@ -79,22 +81,22 @@ function Login() {
         <section className="main-area">
             <h2>LOGIN 🍑</h2>
             <p>이메일과 비밀번호를 입력해주세요</p>
-            <form>
+            <form onSubmit={goLogin}>
                     <input type="email" name="email" className="email" placeholder="이메일" autoComplete="off" onChange={(e)=>{
                         setUserEmail(e.target.value)
                     }}/>
                     <input type="password" name="password" className="password" placeholder="비밀번호" onChange={(e)=>{
                         setUserPwr(e.target.value)
                     }}/>
-            </form>
-            <p className="login-warn" ref={loginwarnRef}>* 이메일 또는 비밀번호가 일치하지 않습니다. 회원이 아니실 경우에는 회원 가입을 먼저 진행해 주세요.</p>
-        </section>
+        <p className="login-warn" ref={loginwarnRef}>* 이메일 또는 비밀번호가 일치하지 않습니다. 회원이 아니실 경우에는 회원 가입을 먼저 진행해 주세요.</p>
         <div className="regist-btn">
             <Link to='/signup/'>회원가입</Link>
         </div>
         <div className="login-btn-area">
-            <button className="login-btn" onClick={goLogin}>로그인</button>
+            <button className="login-btn" type='submit'>로그인</button>
         </div>
+            </form>
+        </section>
     </div>
 
     <div className="email-verify">

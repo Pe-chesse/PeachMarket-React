@@ -27,19 +27,20 @@ function App() {
   const [chatRoomState, setChatRoomState] = useState(null)
   const [chatRoomInfo, setChatRoomInfo] = useState(null)
   const [ws, setWSState] = useState(null);
-  const navigate = useNavigate();
-  const location = useLocation();
   const [verifyUser, setVerifyUser] = useState(null);
+  const [chatController, setChatController] = useState(false)
+  const [chatting, setChatting] = useState(null)
+  const [userUid, setUserUid] = useState(null)
+
   const urlParams = new URLSearchParams(useLocation().search)
   const findRoom = urlParams.get('room')
-  const [chatController, setChatController] = useState(false)
 
   useEffect(() => {
     initAuthListener((user) => {
       if(user !== null){
-      const newws = new WS(user)
-      setWSState(newws)
-      setUser(user);
+        setUser(user)
+        setUserUid(user.uid)
+        // console.log('auth changed')
       if(user) {
         async function verfiy (){
           try {
@@ -54,10 +55,19 @@ function App() {
       }
     }
     });
-  }, [findRoom, user, chatController]); 
+  }, []); 
+
+  useEffect(()=>{
+    if(userUid !== null && userUid !== undefined){
+      const newWs = new WS(userUid)
+      setWSState(newWs)
+      // console.log('ws changed')
+    }
+  },[userUid, findRoom, chatting])
 
   useEffect(()=>{
         if(ws !== null){
+          // console.log('chat active')
           ws.onConnect = () => {
             if (urlParams.get("room") && ws !== null) {
               ws.send(
@@ -70,39 +80,42 @@ function App() {
               );
             }
           };
-          ws.onMessage = (message) => {
-            const socketData = JSON.parse(message);
-            setChatState(socketData)
-            switch (socketData.type) {
-              case "sync.message":
-                const newChatInfo = new ChatInfo(socketData);
-                setChatRoomState(newChatInfo)
-                setChatController(false)
-                break;
-              case "chat_room.info":
-                const chatMessage = new Chatroom(socketData)
-                setChatRoomInfo(chatMessage)
-                setChatController(false)
-                break;
-                case "chat.message":
-                  // const newChatState = chatState.copyWith({
-                  //   messages: [...chatState.messages, new Message(socketData)],
-                  // });
-                  // if (location.pathname === "/chat/room") {
-                  //   console.log(socketData);
-                  //   const newMessage = new Message(socketData);
-                  //   setChatRoomInfo(newMessage)
-                  //   // onRoomPageStateadd(newMessage);
-                  //   window.scrollTo(0, document.body.scrollHeight);
-                  // }
-                  setChatController(false)
-                  break;
-              default:
-                return;
-            }
-          };
         }
-  },[ws, chatController])
+  },[ws])
+
+  useEffect(()=>{
+    if(ws !== null){
+      // console.log('message confirm')
+      ws.onMessage = (message) => {
+        // console.log(message)
+        const socketData = JSON.parse(message);
+        setChatState(socketData)
+        // console.log(socketData)
+        switch (socketData.type) {
+          case "sync.message":
+            const newChatInfo = new ChatInfo(socketData);
+            // console.log(newChatInfo)
+            setChatRoomState(newChatInfo)
+            setChatController(false)
+            break;
+          case "chat_room.info":
+            const chatMessage = new Chatroom(socketData)
+            console.log(chatMessage)
+            setChatRoomInfo(chatMessage)
+            setChatController(false)
+            break;
+            case "chat.message":
+                const newMessage = new Message(socketData);
+                // console.log(newMessage)
+                setChatting(prev => ({...prev, newMessage}))
+              setChatController(false)
+              break;
+          default:
+            return;
+        }
+      };
+    }
+  },[ws])
   
   // 이니셜라이징
 
@@ -125,7 +138,7 @@ function App() {
         <Route path='/setting/' element={<Setprofile/>}/>
         <Route path='/home/' element={<Home user={user} verifyUser={verifyUser}/>} />
         <Route path='/chat/'  element={<ChatList chatRoomState={chatRoomState} verifyUser={verifyUser}/>}/>
-        <Route path='/chat/room/'  element={<ChatRoom ws={ws} chatState={chatState} chatMessage={chatRoomInfo} setChatController={setChatController} verifyUser={verifyUser}/>}/>
+        <Route path='/chat/room/'  element={<ChatRoom ws={ws} chatting={chatting} chatMessage={chatRoomInfo} verifyUser={verifyUser}/>}/>
         <Route path='/profile/user' element={<Profile user={user} verifyUser={verifyUser}/>}/>
         <Route path='/profile/setting/' element={<Setprofile/>}/>
         <Route path='/profile/followings' element={<Followings user={user} verfiyUser={verifyUser}/>}/>
