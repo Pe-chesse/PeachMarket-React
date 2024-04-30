@@ -5,6 +5,7 @@ import Toparea from "../../components/toparea";
 import './chat.scss'
 
 function ChatList({chatRoomState, verifyUser}) {
+
     return (
         <>
         <Toparea/>

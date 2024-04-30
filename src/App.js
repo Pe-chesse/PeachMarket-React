@@ -32,6 +32,7 @@ function App() {
   const [chatting, setChatting] = useState(null)
   const [userUid, setUserUid] = useState(null)
 
+  const location = useLocation()
   const urlParams = new URLSearchParams(useLocation().search)
   const findRoom = urlParams.get('room')
 
@@ -90,7 +91,7 @@ function App() {
         // console.log(message)
         const socketData = JSON.parse(message);
         setChatState(socketData)
-        // console.log(socketData)
+        console.log(socketData)
         switch (socketData.type) {
           case "sync.message":
             const newChatInfo = new ChatInfo(socketData);

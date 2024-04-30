@@ -51,11 +51,13 @@ function Profile(user , verifyUser) {
             try{
                 const data =  await api.account.getProfile(nickname)
                 setProfileInfo(data)
+                if(user.verifyUser !== null){
                 const followings = await api.account.getFollowing(user.verifyUser.nickname)
                 for(let i=0; i < followings.length; i++){
                     if(followings[i].nickname !== null && followings[i].nickname === nickname){
                         setIsFollowing(true)
                     }
+                }
                 }
             }
             catch(error){
@@ -79,7 +81,7 @@ function Profile(user , verifyUser) {
     const createChatroom = ()=>{
         try{
             api.chat.create(nickname)
-            navigate('/chat/')
+            navigate(`/chat/`)
         } catch(error){
             console.log(error)
         }
@@ -88,7 +90,7 @@ function Profile(user , verifyUser) {
 
     return (
     <>
-    {profileInfo !== null ?
+    {profileInfo !== null && profileInfo !== undefined ?
     <>
         <div className="profile-wrapper">
         <Toparea/>
