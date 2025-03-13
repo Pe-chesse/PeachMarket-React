@@ -9,7 +9,7 @@ function Index() {
     <>
       <div className="wrapper">
         <article className="logo">
-            <img src="./img/Peach_logo.PNG" alt="peach-logo" />
+            <img src="/img/Peach_logo.PNG" alt="peach-logo" />
             <h1>Peach Market</h1>
         </article>
         <article className="go-login">

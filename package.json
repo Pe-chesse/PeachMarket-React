@@ -1,5 +1,6 @@
 {
   "name": "my-app",
+  "homepage": "https://pe-chesse.github.io/PeachMarket-React",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
