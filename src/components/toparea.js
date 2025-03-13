@@ -44,9 +44,9 @@ function Toparea({title , searchUser, setSearchUser}) {
         return (
         <>
             <article className="top-area">
-                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+                <img src="./img/arrow.png" alt="arrow" onClick={navigatePop}/>
                 <h1>프로필</h1>
-                <img src="../img/top_menu_op.png" alt="top_menu_option" className="menu-bar" onClick={activeModal}/>
+                <img src="./img/top_menu_op.png" alt="top_menu_option" className="menu-bar" onClick={activeModal}/>
             </article>
             <div className='blank'></div>
         </>
@@ -55,7 +55,7 @@ function Toparea({title , searchUser, setSearchUser}) {
         return(
         <>
             <article className="top-area">
-                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+                <img src="./img/arrow.png" alt="arrow" onClick={navigatePop}/>
                 <h1>팔로워</h1>
             </article>
             <div className='blank'></div>
@@ -65,7 +65,7 @@ function Toparea({title , searchUser, setSearchUser}) {
         return(
         <>
             <article className="top-area">
-                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+                <img src="./img/arrow.png" alt="arrow" onClick={navigatePop}/>
                 <h1>팔로잉</h1>
             </article>
             <div className='blank'></div>
@@ -76,7 +76,7 @@ function Toparea({title , searchUser, setSearchUser}) {
         return(
         <>
             <article className="top-area">
-                <img src="../../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+                <img src="./../img/arrow.png" alt="arrow" onClick={navigatePop}/>
                 <h1>프로필 수정</h1>
             </article>
             <div className='blank'></div>
@@ -88,7 +88,7 @@ function Toparea({title , searchUser, setSearchUser}) {
         return (
         <>
             <article className="top-area">
-                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
+                <img src="./img/arrow.png" alt="arrow" onClick={navigatePop}/>       
                 <div className="search" >
                     <label className="sr-only"></label>
                     <input type="search" placeholder="계정 검색" id="user-search" className="userSearch" autoComplete='off' onChange={(e)=>{
@@ -108,7 +108,7 @@ function Toparea({title , searchUser, setSearchUser}) {
                     <Link to="/home/">🍑 PEACH MARKET</Link>
                 </strong>
                 <Link to='/search/'>
-                    <img src='/img/search_icon.png' alt="검색아이콘사진"/>
+                    <img src='./img/search_icon.png' alt="검색아이콘사진"/>
                 </Link>
             </article>
             <div className='blank'></div>
@@ -118,9 +118,9 @@ function Toparea({title , searchUser, setSearchUser}) {
         return(
             <>
                 <article className="top-area">
-                    <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
+                    <img src="./img/arrow.png" alt="arrow" onClick={navigatePop}/>       
                     <h1>채팅</h1>
-                    <img src="../img/top_menu_op.png" alt="more_vertical"/>
+                    <img src="./img/top_menu_op.png" alt="more_vertical"/>
                 </article>
                 <div className='blank'></div>
             </>
@@ -129,9 +129,9 @@ function Toparea({title , searchUser, setSearchUser}) {
         return(
             <>
             <article className='top-area'>
-                <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>
+                <img src="./img/arrow.png" alt="arrow" onClick={navigatePop}/>
                 <h1>{nickname}</h1>       
-                <img src="../img/top_menu_op.png" alt="top_menu_option" className="menu-bar" />
+                <img src="./img/top_menu_op.png" alt="top_menu_option" className="menu-bar" />
             </article>
             <div className='blank'></div>
             </>
@@ -140,7 +140,7 @@ function Toparea({title , searchUser, setSearchUser}) {
         return(
             <>
                 <article className="top-area">
-                    <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
+                    <img src="./img/arrow.png" alt="arrow" onClick={navigatePop}/>       
                     <h1>글 쓰기</h1>
                 </article>
                 <div className='blank'></div>
@@ -150,7 +150,7 @@ function Toparea({title , searchUser, setSearchUser}) {
         return(
             <>
                 <article className="top-area">
-                    <img src="../img/arrow.png" alt="arrow" onClick={navigatePop}/>       
+                    <img src="./img/arrow.png" alt="arrow" onClick={navigatePop}/>       
                     <h1>🍑 PeachMarket</h1>
                 </article>
                 <div className='blank'></div>

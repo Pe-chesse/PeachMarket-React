@@ -39,7 +39,7 @@ function Searh() {
                             <div className="searched-user" key={user.nickname}>
                                 {
                                     user.image_url === null || ''?
-                                    <img src="../img/peach_cha.png" alt="user-profile"/>:
+                                    <img src="./img/peach_cha.png" alt="user-profile"/>:
                                     <img src={user.image_url} alt="user-profile"/>
                                 }
                                 <p className='searched-user-nick'>

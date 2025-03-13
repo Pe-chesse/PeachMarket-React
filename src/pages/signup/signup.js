@@ -75,7 +75,7 @@ function Signup() {
     <>
     <div className='signup-wrapper'>
         <article className="top-area">
-            <img src="../img/arrow.png" alt="arrow" onClick={goBackbtn}/>
+            <img src="./img/arrow.png" alt="arrow" onClick={goBackbtn}/>
             <p>회원가입</p>
         </article>
         <section className="main-area">

@@ -61,7 +61,7 @@ function Followers(user) {
                         <div className="followers" key={a.nickname}>
                             <Link to={`/profile/user?nickname=${a.nickname}`}>
                                 <div className='user-main-img'>
-                                    <img src={a.image_url ? a.image_url : '../img/peach-user.png'}/>
+                                    <img src={a.image_url ? a.image_url : './img/peach-user.png'}/>
                                 </div>
                             </Link>
                             <div className="user-info">

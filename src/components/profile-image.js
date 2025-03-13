@@ -5,7 +5,7 @@ const UserProfileImage = ({ image_url, small}) =>  {
     return (
         <>
             <div className={small == null? "post-userinfo-img" :small? "post-userinfo-img-small":"post-userinfo-img-big"}>
-                {image_url == null || "" ? <img src="../img/peach_cha.png" alt="post-profile-img"/> :<img src={image_url} alt="user-profile-image"/>}
+                {image_url == null || "" ? <img src="./img/peach_cha.png" alt="post-profile-img"/> :<img src={image_url} alt="user-profile-image"/>}
             </div>
         </>
     );

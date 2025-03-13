@@ -75,7 +75,7 @@ function Login() {
     <>
     <div className='login-wrapper'>
         <article className="top-area">
-            <img src="../img/arrow.png" alt="arrow" onClick={goBackbtn}/>
+            <img src="./img/arrow.png" alt="arrow" onClick={goBackbtn}/>
             <p>이메일로 로그인</p>
         </article>
         <section className="main-area">
