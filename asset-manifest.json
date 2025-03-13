@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/PeachMarket-React/static/css/main.e7d1bcac.css",
-    "main.js": "/PeachMarket-React/static/js/main.7c43f7b8.js",
+    "main.js": "/PeachMarket-React/static/js/main.95f49cc7.js",
     "static/js/787.28cb0dcd.chunk.js": "/PeachMarket-React/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/PeachMarket-React/index.html",
     "main.e7d1bcac.css.map": "/PeachMarket-React/static/css/main.e7d1bcac.css.map",
-    "main.7c43f7b8.js.map": "/PeachMarket-React/static/js/main.7c43f7b8.js.map",
+    "main.95f49cc7.js.map": "/PeachMarket-React/static/js/main.95f49cc7.js.map",
     "787.28cb0dcd.chunk.js.map": "/PeachMarket-React/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e7d1bcac.css",
-    "static/js/main.7c43f7b8.js"
+    "static/js/main.95f49cc7.js"
   ]
 }
